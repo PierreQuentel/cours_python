@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="description" content="Introduction to Python written in Brython www.brython.info">
+<meta name="keywords" content="Python,Brython">
+<meta name="author" content="Pierre Quentel">
+<meta charset="iso-8859-1">
+
+<style>
+body,td {font-family: Arial;
+    font-size:1.2em;
+}
+    
+#cours {
+    position: relative;
+    margin-left:auto;
+    margin-right:auto;
+    width:900px;
+    margin-top:20px;
+    padding-top:5px;
+    padding-left:40px;
+    padding-right:40px;
+    min-height:650px;
+    font-size:18px;
+    background-color:#FFF;
+}
+
+#cours h1 {
+    background-color:#4479D4;
+    padding-top:10px;
+    padding-left:20px;
+    padding-right:20px;
+    padding-bottom:10px;
+    color:#FFFFFF;
+    border-radius: 10px 10px;
+}
+#cours h1 code {
+    color: #FFF;
+}
+
+#cours pre.marked{
+    background-color:#ddd;
+    font-size: 0.9em;
+    margin-left:40px;
+    margin-right:40px;
+    padding: 7px;
+    border-style: solid;
+    border-color: #888;
+    border-width: 1px;
+    width: auto;
+}
+.python{
+    background-color:#ddd;
+    font-size: 0.8em;
+    font-weight:bold;
+    margin-left:40px;
+    margin-right:40px;
+    padding: 7px;
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    border-radius:15px;
+    width: auto;
+}
+.raw{
+    font-size: 0.9em;
+    font-weight:bold;
+    margin-left:40px;
+    margin-right:40px;
+    padding: 7px;
+    width: auto;
+}
+
+code {color: #339;
+    font-weight:bold;
+}
+em{
+    color: #339;
+    font-family:courier;
+}
+strong{
+    color: #339;
+    font-family:courier;
+}
+
+#footer {
+    text-align: center;
+    position:absolute;
+    bottom:25px;
+    width:890px;
+    font-weight:bold;
+    color:#7AA2E4;
+    
+    padding:5px;
+}
+#timeline {
+    text-align: center;
+    position:absolute;
+    bottom:5px;
+    width:890px;
+    font-weight:bold;
+    color:#FFB740;
+    background-color:#7AA2E4;
+    height:10px;
+    padding-left:5px;
+    padding-right:5px;
+}
+#tl_pos{
+    text-align: center;
+    position:absolute;
+    bottom:0px;
+    width:4px;
+    font-weight:bold;
+    background-color:#FFF;
+    height:10px;
+    left:0px;
+}
+
+</style>
+
+<script type="text/javascript" src="brython.js"></script>
+<script type="text/javascript" src="brython_stdlib.js"></script>
+
+</head>
+<body onLoad="brython(1)">
+
+<script type="text/python">
+from browser import document
+import slideshow
+print(slideshow)
+slideshow.show('cours_python.pss', document['cours'])
+
+</script>
+<div id="cours"></div>
+</body>
+</html>
+

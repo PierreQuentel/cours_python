@@ -1,0 +1,669 @@
+@title Introduction à Python
+@pagenum True
+@index Appels système
+Appels système
+==============
+
+Module **subprocess**
+
+[Exemples](http://www.moosechips.com/2010/07/python-subprocess-module-examples/)
+
+    >>> subprocess.call('python')
+    Python 3.3.3 (v3.3.3:c3896275c0f6, Nov 18 2013, 21:18:40) [MSC v.1600 32 bit (In
+    tel)] on win32
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>>
+
+Utilisation de commandes shell :
+
+    >>> subprocess.call('dir',shell=True)
+
+../..
+Appels système
+==============
+
+Capture de *stdout* et *stderr*
+
+    >>> import subprocess
+    >>> proc = subprocess.Popen("dir", shell=True,
+    ...     stdout=subprocess.PIPE)
+    >>> for line in proc.stdout:
+    ...  print(line)
+    ...
+
+../..
+@index Fonctions lambda
+Fonctions lambda
+================
+
+Fonctions anonymes, sur une seule ligne
+
+    >>> f = lambda x:2*x
+    >>> f(4)
+    8
+
+équivaut à
+
+    >>> def f(x):
+    ...     return 2*x
+    ...
+
+Les arguments sont passés sans parenthèse
+
+Le corps de la fonction ne peut contenir qu'une instruction,
+son résultat est la valeur de retour
+
+Peut être utile pour gagner quelques lignes - ne pas en abuser !    
+
+../..
+Fonctions lambda
+===============
+
+    >>> def make_incrementor(n):
+    ...     return lambda x: x + n
+    ...
+    >>> f = make_incrementor(42)
+    >>> f(0)
+    42
+    >>> f(1)
+    43
+
+équivaut à
+
+    def make_incrementor(n):
+        def g(x):
+            return x+n
+        return g
+../..
+Fonctions lambda
+===============
+Utilisation dans un GUI où la même fonction est utilisée pour
+gérer un clic sur une série de boutons
+
+    class Button:
+    
+        def __init__(self):
+            self.events = {}
+    
+        def bind(self, event, func):
+            self.events[event] = func
+        
+        def click(self):
+            self.events['click']()
+    
+    buttons = [Button() for i in range(10)]
+    
+    def show(n):
+        """Fonction qui gère l'événement clic sur un bouton"""
+        print('bouton %s' %n)
+    
+    for i, button in enumerate(buttons):
+        button.bind('click', lambda x=i:show(x))
+    
+    buttons[2].click()
+../..
+@index Tri de liste
+Tri de liste
+============
+
+<code>sort(_key=None, reverse=False_)</code>
+
+trie la liste sur place (ne retourne pas la liste)
+
+Si _key_ n'est pas défini, utilise l'opérateur `<` 
+entre les éléments de la liste
+
+    >>> t=list('azerty')
+    >>> t.sort()
+    >>> t
+    ['a', 'e', 'r', 't', 'y', 'z']
+
+_reverse=True_ pour inverser le tri
+
+    >>> t=list('azerty')
+    >>> t.sort(reverse=True)
+    >>> t
+    ['z', 'y', 't', 'r', 'e', 'a']
+
+../..
+Tri de liste
+============
+
+<code>sort(_key=None, reverse=False_)</code>
+
+Si _key_ est fourni, c'est une fonction qui prend
+1 argument
+
+Le tri compare les résultats de _key(element)_ pour tous
+les éléments de la liste
+
+    >>> t = list('AzeRty')
+    >>> t.sort()
+    >>> t
+    ['A', 'R', 'e', 't', 'y', 'z']
+
+Tri "insensible à la casse"
+
+    >>> t.sort(key=str.lower)
+    >>> t
+    ['A', 'e', 'R', 't', 'y', 'z']
+../..
+Tri de liste
+============
+
+    class Z:
+    
+        def __init__(self, nom, prenom):
+            self.nom = nom
+            self.prenom = prenom
+    
+        def ident(self):
+            return '%s %s' %(self.prenom, self.nom)
+    
+        def __repr__(self):
+            return '%s %s' %(self.nom, self.prenom)
+        
+    presents = [Z('Bouchekif','Abdessalam'),
+        Z('Charlet','Delphine'),
+        Z('Geille','Christian')]
+    
+    presents.sort(key=lambda x:x.ident())
+    print(presents)
+
+../..
+@index Unicode
+Unicode
+=======
+
+Unicode est un standard qui associe à chaque lettre ou signe 
+de toutes les écritures référencées un numéro de code unique
+noté U+abcd[e[f]]
+
+<table cellspacing=10>
+<tr><td style="font-size:20px;">lettre</td><td style="font-size:20px;">codepoint</td></tr>
+<tr><td style="font-size:20px;">U</td><td style="font-size:20px;">U+0055</td>
+<tr><td style="font-size:20px;">Ж</td><td style="font-size:20px;">U+0416</td>
+<tr><td style="font-size:20px;">ى</td><td style="font-size:20px;">U+0649</td>
+<tr><td style="font-size:20px;">བྷ</td><td style="font-size:20px;">U+0F57</td>
+</table>
+
+
+../..
+Unicode
+=======
+
+Les lettres ou signes doivent être transformés en octets pour être
+stockés sur disque ou envoyés sur les réseaux
+
+La transformation se fait en utilisant un __encodage__
+
+Il existe plusieurs encodages :
+
+- ASCII : la lettre a (U+0061) est encodée sur 1 octet : 61 (hexa)
+
+>Cet encodage ne traite que les caractères latins de base, les chiffres
+arabes et quelques signes de ponctuation
+
+- latin-1 ou iso-8859-1 : encodage sur 1 octet, prend en charge les caractères accentués français
+
+- UTF-8 : encodage sur un nombre variable d'octets, prend en charge la plupart des caractères Unicode. Tend à devenir le plus répandu
+
+../..
+Unicode
+=======
+
+En Python 3 les "chaines de caractères" (classe `str`) sont en Unicode
+
+Leur transformation en octets se fait par la fonction <code>encode(_encodage_)</code>
+
+    >>> s = "maçon"
+    >>> s
+    'maçon'
+    >>> x = s.encode('utf-8')
+    >>> x
+    b'ma\xc3\xa7on'
+
+Le résultat de `encode` est une instance de la classe `bytes`
+
+Opération inverse : méthode <code>decode(_encodage_)</code>
+
+    >>> x.decode('utf-8')
+    'maçon'
+
+../..
+Unicode
+=======
+
+Les encodages 'ascii' et 'iso-8859-1' ne peuvent pas traiter
+tous les caractères
+
+    >>> "maçon".encode("ascii")
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    UnicodeEncodeError: 'ascii' codec can't encode character '\xe7' in position 2: o
+    rdinal not in range(128)
+
+../..
+Unicode
+=======
+
+Les fichiers stockent des octets, pas des caractères Unicode
+
+Pour écrire une chaine de caractères (Unicode) dans un fichier en mode texte,
+on peut spécifier l'encodage utilisé
+
+    >>> out = open('test.txt', 'w', encoding='utf-8')
+    >>> out.write('maçon')
+    5
+
+Par défaut, l'encodage dépend de la plateforme
+
+../..
+Unicode
+=======
+
+Erreur si on ouvre un fichier en écriture avec un encodage 
+donné et qu'on veut écrire un texte non supporté par cet
+encodage
+
+    >>> out = open('test.txt','w',encoding='ascii')
+    >>> out.write('maçon')
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    UnicodeEncodeError: 'ascii' codec can't encode character '\xe7' in position 2: o
+    rdinal not in range(128)
+../..
+Unicode
+=======
+
+Pour utiliser un fichier texte __il faut spécifier son encodage__
+
+    >>> _in = open('logs.txt', 'r', encoding='iso-8859-1')
+    >>> for line in _in:
+    ...     print(line)
+
+Erreur si on n'utilise pas le bon encodage :
+
+    >>> out = open('test.txt','w',encoding='iso-8859-1')
+    >>> out.write('maçon')
+    5
+    >>> out.close()
+    >>> _in = open('test.txt','r',encoding='iso-8859-1')
+    >>> _in.read()
+    'maçon'
+    >>> _in = open('test.txt','r',encoding='utf-8')
+    >>> _in.read()
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+      File "C:\Python33\lib\codecs.py", line 301, in decode
+        (result, consumed) = self._buffer_decode(data, self.errors, final)
+    UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe7 in position 2: invalid
+    continuation byte
+../..
+Unicode
+=======
+Si un script Python contient des caractères non ASCII, l'éditeur de texte
+l'enregistre sous un certain encodage
+
+Il faut indiquer cet encodage à l'interpréteur Python qui exécute le
+script
+
+Syntaxe : sur une des deux premières lignes
+
+    # -*- coding : utf-8 -*-
+../..
+@index Expressions régulières
+Expressions régulières
+======================
+
+Module **re**
+
+[Documentation Python](http://docs.python.org/3/library/re.html)
+
+[Tutoriel en français](http://fr.openclassrooms.com/informatique/cours/apprenez-a-programmer-en-python/le-module-re)
+
+../..
+Expressions régulières
+======================
+
+<code>re.search(_modele_, _chaine_)</code>
+
+Cherche une occurence de _modele_ dans la _chaine_
+
+Renvoie une instance de la classe `MatchObject`
+
+    >>> import re
+    >>> mo = re.search('ai','essai')
+    >>> print(mo)    
+    <_sre.SRE_Match object at 0x00C7DDB0>
+    >>> mo.start()
+    3
+    >>> mo.end()
+    5
+    >>> mo.string
+    'essai'
+
+../..
+Expressions régulières
+======================
+
+<code>re.match(_modele_, _chaine_)</code>
+
+Cherche une correspondance exacte entre le _modèle_ et la _chaine_
+
+    >>> mo = re.match('.*a?', 'essai')
+    >>> print(mo)
+    <_sre.SRE_Match object at 0x00C7DDB0>
+    >>> print(re.match('ai','essai'))
+    None
+
+../..
+Expressions régulières
+======================
+
+Caractères spéciaux : 
+
+>`.`  tout caractère sauf saut de ligne
+
+
+>`^` début de chaine
+
+>`$` fin de chaine
+
+
+>`*` n>=0 répétitions de l'expr. rég. précédente
+
+>`+` n>0 répétitions de l'expr. rég. précédente
+
+>`?` 0 ou 1 répétition de l'exp. rég. précédente
+
+../..
+Expressions régulières
+======================
+
+<code>\</code> caractère d'échappement
+
+><code>\d</code> chiffre
+
+><code>\s</code> "whitespace" (espace, tabulation, saut de ligne, retour chariot)
+
+><code>\b</code> début ou fin de mot
+
+><code>\w</code> un caractère Unicode
+
+conduit à écrire les expressions régulières comme _raw string_
+
+    expr = r'<\s*>'
+    
+plus lisible que
+
+    expr = '<\\s*>'
+../..
+Expressions régulières
+======================
+
+Par défaut, les caractères `*`, `+` consomment autant de contenu que possible
+
+    >>> s = '<a>essai</a>'
+    >>> mo = re.search('<.*>', s)
+    >>> mo.start(), mo.end()
+    0, 12
+
+Mode "minimal" : `*?`,  `+?` pour consommer aussi peu de contenu que possible
+
+    >>> mo = re.search('<.*?>', s)
+    >>> mo.start(), mo.end()
+    0, 3
+
+../..
+Expressions régulières
+======================
+
+> `{m}`    exactement m répétitions de l'expr. rég. précédente
+
+> `{m,n}`  le plus grand nombre de répétitions entre m et n
+
+> `{m,n}?`  le plus petit nombre de répétitions entre m en n
+
+    >>> s = 'azeeeerty'
+    >>> import re
+    >>> mo = re.search('e{2,4}',s)
+    >>> mo.start(),mo.end()
+    (2, 6)
+    >>> mo = re.search('e{2,4}?',s)
+    >>> mo.start(),mo.end()
+    (2, 4)
+
+../..
+Expressions régulières
+======================
+
+Ensemble de caractères : `[...]`
+
+    [abc]    l'un quelconque des caractères a,b ou c
+    [x+*]    l'un quelconque des caractères x, + ou * (pas besoin de \)
+    [a-z]    tous les caractères entre a et z inclus
+    [^A]     tous les caractères sauf la lettre A
+
+../..
+Expressions régulières
+======================
+
+Groupes : `(...)`
+
+    >>> s = 'abracadabra'
+    >>> mo = re.search('(br)',s)
+    >>> mo.groups()
+    ('br',)
+
+Groupe nommé : `(?P<nom>...)`
+
+
+    >>> mo = re.search('(?P&lt;nom&gt;br)',s)
+    >>> mo.groups('nom')
+    ('br',)
+
+../..
+Expressions régulières
+======================
+
+Drapeaux (_flags_) pour modifier l'expression régulière :
+
+    re.I    insensible à la casse
+    
+    re.M    ^ correspond au début de la chaine et à chaque début de ligne,
+            $ correspond à chaque fin de ligne et à la fin de la chaine
+    
+    re.S    . correspond à tous les caractères y compris le saut de ligne
+
+Exemple :
+
+    >>> mo = re.search('(r)','Rennes')
+    >>> print(mo)
+    None
+    >>> mo = re.search('(r)','Rennes',re.I)
+    >>> print(mo)
+    <_sre.SRE_Match object at 0x00CDC220>
+
+../..
+Expressions régulières
+======================
+
+<code>re.findall(_pattern, string, flags=0_)</code>
+
+>retourne toutes les occurrences sous forme de liste de chaines
+
+<code>re.finditer(_pattern, string, flags=0_)</code>
+
+>retourne un itérateur sur les occurrences
+
+    >>> ch = "Le chat, la belette et le petit lapin"
+    >>> for mo in re.finditer(r"\b(l[a-z]?)\b", ch, re.I):
+    ...  print(mo.groups())
+    ...
+    ('Le',)
+    ('la',)
+    ('le',)
+../..
+Expressions régulières
+======================
+
+<code>re.sub(_pattern, repl, string, count=0, flags=0_)</code>
+
+> remplace les occurrences par _repl_ et renvoie la chaine modifiée
+
+> si _repl_ est une chaine, elle peut contenir des références 
+numérotées `\0`, `\1`, etc correspondant aux groupes dans _pattern_
+
+    >>> re.sub(r"(ab)", r" \1 ", "abcdef")
+    ' ab cdef'
+
+> si _repl_ est une fonction, elle est appelée pour chaque occurrence, avec
+comme paramètre l'instance de `MatchObject`
+
+    >>> def dashrepl(matchobj):
+    ...     if matchobj.group(0) == '-': return ' '
+    ...     else: return '-'
+    >>> re.sub('-{1,2}', dashrepl, 'pro----gram-files')
+    'pro--gram files'
+    >>> re.sub(r'\sAND\s', ' & ', 'Baked Beans And Spam', flags=re.IGNORECASE)
+    'Baked Beans & Spam'
+
+../..
+Expressions régulières
+======================
+
+Texte à http://siprojets-dev.rd.francetelecom.fr/exo_re.txt
+
+    <LI> <a HREF = "kde-linux.html" >   L'environnement graphique KDE </a>
+    <LI><a href="install-mandrake-cfipen.html">Exemple d'installation</a>
+     & <A HREF="install-reseau.html">installation par NFS</A>
+    <LI> <A href='demarrage-linux.html'>Démarrer (sous) Linux</a>
+    <LI> Organisation du  <a href = systemes-fichiers.html > système de fichiers</a>
+    <LI> Principales <a href="commandes-generales.html">commandes utilisateurs</a>
+
+Expression régulière pour extraire tous les textes des liens ?
+
+../..
+@index Client-serveur
+Client-serveur
+==============
+Récupérer une page web :
+
+    >>> import urllib.request
+    >>> f = urllib.request.open("http://www.python.org")
+
+Le résultat de `open()` est un objet de type fichier
+
+    >>> page = f.read(300)
+
+Envoyer une requête avec des données (sous forme d'octets)
+
+    >>> import urllib.parse
+    >>> infos = {'annee':2013}
+    >>> infos_str = urllib.parse.urlencode(infos)
+    >>> infos_bytes = infos_str.encode('utf-8')
+    >>> f = urllib.request.open(url, data = infos_bytes)
+Par défaut, le `Content-type` est `application/x-www-form-urlencoded`
+../..
+Client-serveur
+==============
+L'argument de `open()` peut être une instance de la classe `Request`
+
+    >>> import urllib.request
+    >>> req = urllib.request.Request("http://www.python.org")
+    >>> f = urllib.request.open(req)
+
+Pour spécifier un `Content-type` pour la requête :
+
+    >>> headers = {'Content-type' : 'application/json'}
+    >>> req = urllib.request.Request(url, headers=headers)
+    >>> f = urllib.request.open(req)
+
+../..
+Client-serveur
+==============
+Envoi de données au format JSON :
+
+    import urllib.request
+    import json
+    
+    json_dict = { 'name': 'some name', 'value': 'some value' }
+    
+    # conversion du dictionnaire en JSON
+    json_data = json.dumps(json_dict)
+    
+    # dumps() retourne un str : convertir en octets
+    post_data = json_data.encode('utf-8')
+    
+    # spécifier le content-type
+    headers = {}
+    headers['Content-Type'] = 'application/json'
+    
+    req = urllib.request.Request(url, post_data, headers)
+    res = urllib.request.urlopen(req)
+../..
+Client-serveur
+==============
+Serveur HTTP gérant les scripts CGI
+
+    import http.server as server
+    from http.server import CGIHTTPRequestHandler
+    
+    # définit l'adresse et le port du serveur
+    server_address = ('', 8001)
+    
+    # démon http ; spécifie la classe qui gère les requêtes
+    httpd = server.HTTPServer(server_address, CGIHTTPRequestHandler)
+
+    print("server running on port %s" % server_address[1])
+
+    # lance le serveur
+    httpd.serve_forever()
+../..
+@index XML
+XML
+===
+2 options :
+- `xml.dom` pour gérer le document dans son ensemble
+- `xml.sax` pour gérer chaque élément du document dans un gestionnaire d'événements
+../..
+XML
+===
+Lecture d'un document xml
+
+    import xml.dom.minidom
+    import urllib.request    
+
+    url = 'http://demo.tremorvideo.com/proddev/vast/' \
+        'vast_inline_nonlinear.xml'
+    f = urllib.request.urlopen(url)
+    
+    dom = xml.dom.minidom.parse(f)
+    print(dir(dom))
+L'objet retourné est conforme à l'API DOM : `childNodes, getElementById()` etc.
+../..
+XML
+===
+
+Module `xml.sax` :
+
+> <code>xml.sax(_url, handler_)</code>
+
+où _handler_ est une instance d'une classe dérivée de `xml.sax.handler.ContentHander`
+
+Cette classe doit redéfinir certaines méthodes de la classe pour gérer
+les événements : début/fin d'un élément par exemple
+
+    import xml.sax
+    import urllib.request    
+    
+    url = 'http://demo.tremorvideo.com/proddev/vast/' \
+        'vast_inline_nonlinear.xml'
+    
+    class Handler(xml.sax.handler.ContentHandler):
+    
+        def startElement(self, name, attr):
+            print('element %s' %name)
+            
+    dom = xml.sax.parse(url, Handler())
