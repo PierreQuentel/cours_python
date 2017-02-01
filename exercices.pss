@@ -295,13 +295,31 @@ Les afficher au format
     75003 Paris
 
 @pause
+corrections sur le slides suivant
+
+../..
+
+Formatage de chaines - corrections
+====================
+
     fmt = """{nom}
     {numero} {nom_rue}
-    {code_postal} {nom_ville}"""
+    {code_postal} {nom_ville}
+    """
+    
+    for adresse in adresses:
+        print(fmt.format(nom=adresse.nom, numero=adresse.numero, nom_rue=adresse.nom_rue,
+                         code_postal=adresse.code_postal, nom_ville=adresse.nom_ville))
+
+@pause
+Ou de manière plus compacte :
+    fmt = """{nom}
+    {numero} {nom_rue}
+    {code_postal} {nom_ville}
+    """
     
     for adresse in adresses:
         print(fmt.format(**adresse))
-        print()
 
 ../..
 @index Fichiers
