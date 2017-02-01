@@ -18,7 +18,7 @@ des deux derniers caractères.
     `python
     s = 'exercice'
     
-    print(s[:2] +s [-2:])
+    print(s[:2] + s[-2:])
 
 ../..
 Chaines de caractères
