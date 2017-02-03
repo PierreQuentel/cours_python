@@ -621,7 +621,7 @@ Fonctions
 Définition de paramètres par défaut
 
     >>> def f(x, y=4):
-    ...    return x+y
+    ...    return x + y
     ...
     >>> f(2)
     6
