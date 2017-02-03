@@ -349,6 +349,29 @@ et utiliser la méthode `startswith()` des chaines de caractères :
     print(urls)
 
 ../..        
+Fichiers (suite)
+========
+Comptez le nombre de fois où chaque URL apparaît.
+
+On pourra utiliser un dictionnaire, avec clé : url et valeur : nombre d'occurences.
+
+@pause
+    urls = {}
+
+    with open('logs', encoding='utf-8') as file_obj:
+        for line in file_obj:
+            if line.startswith('POST'):
+                elts = line.split()
+                url = elts[1]
+                if url not in urls:
+                    urls[url] = 1
+                else:
+                    urls[url] += 1
+    print(urls)
+
+En utilisant une librairie (defaultdict ou Counter), on peut simplifier cette solution.
+
+../..    
 @index Erreurs et exceptions
 Erreurs et exceptions
 =====================
