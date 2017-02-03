@@ -520,9 +520,9 @@ Opérateur ternaire
 Boucle `for`
 ============
 Un des outils les plus puissants de Python
-    >>> a = ['chat', 'chien', 'oiseau']
-    >>> for x in a:
-    ...     print(x, len(x))
+    >>> animal_list = ['chat', 'chien', 'oiseau']
+    >>> for animal in animal_list:
+    ...     print(animal, len(animal))
     ...
     chat 4
     chien 5
