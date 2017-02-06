@@ -295,7 +295,7 @@ Les afficher au format
     75003 Paris
 
 @pause
-corrections sur le slides suivant
+corrections sur les slides suivants
 
 ../..
 
@@ -308,11 +308,31 @@ Formatage de chaines - corrections
     """
     
     for adresse in adresses:
-        print(fmt.format(nom=adresse.nom, numero=adresse.numero, nom_rue=adresse.nom_rue,
-                         code_postal=adresse.code_postal, nom_ville=adresse.nom_ville))
+        print(fmt.format(nom=adresse["nom"], 
+                         numero=adresse["numero"], 
+                         nom_rue=adresse["nom_rue"],
+                         code_postal=adresse["code_postal"],
+                         nom_ville=adresse["nom_ville"]))
+
+Très verbeux !
+../..
+Formatage de chaines - corrections
+====================
+
+Plus compact :
+
+    fmt = """{0[nom]}
+    {0[numero]} {0[nom_rue]}
+    {0[code_postal]} {0[nom_ville]}
+    """
+    
+    for adresse in adresses:
+        print(fmt.format(adresse))
+
 
 @pause
-Ou de manière plus compacte :
+
+Encore plus compact :
     fmt = """{nom}
     {numero} {nom_rue}
     {code_postal} {nom_ville}
