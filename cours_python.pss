@@ -216,9 +216,37 @@ Accès à un caractère par index
 ../..
 Chaines de caractères
 =====================
-Tranches
+Tranches (slices)
 --------
 
+<pre>
+ +---+---+---+---+---+
+ | s | a | l | u | t |
+ +---+---+---+---+---+
+   0   1   2   3   4
+  -5  -4  -3  -2  -1
+</pre>
+
+Le premier indice est <b>compris</b>, le deuxième est <b>non compris</b>
+    >>> word[0:2]
+    'sa'
+    >>> word[2:4]
+    'lu'
+On peut omettre les indices pour le début ou la fin de la tranche. Ou utiliser un indice trop grand.
+    >>> word[:2]
+    'sa'
+    >>> word[3:]
+    'ut'
+    >>> word[3:100]
+    'ut'
+
+../..
+Chaines de caractères
+=====================
+Tranches (slices) - autre explication
+--------
+
+En écrivant les indices avant les cases, cela permet de calculer plus facilement les slices.
 <pre>
  +---+---+---+---+---+
  | s | a | l | u | t |
@@ -492,9 +520,9 @@ Opérateur ternaire
 Boucle `for`
 ============
 Un des outils les plus puissants de Python
-    >>> a = ['chat', 'chien', 'oiseau']
-    >>> for x in a:
-    ...     print(x, len(x))
+    >>> animal_list = ['chat', 'chien', 'oiseau']
+    >>> for animal in animal_list:
+    ...     print(animal, len(animal))
     ...
     chat 4
     chien 5
@@ -621,7 +649,7 @@ Fonctions
 Définition de paramètres par défaut
 
     >>> def f(x, y=4):
-    ...    return x+y
+    ...    return x + y
     ...
     >>> f(2)
     6
