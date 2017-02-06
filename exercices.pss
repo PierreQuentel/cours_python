@@ -18,7 +18,7 @@ des deux derniers caractères.
     `python
     s = 'exercice'
     
-    print(s[:2] +s [-2:])
+    print(s[:2] + s[-2:])
 
 ../..
 Chaines de caractères
@@ -67,12 +67,12 @@ puis les affiche dans l’ordre croissant:
 
 @pause
 
-    data = []
-    data.append(int('Entrez un nombre: '))
-    data.append(int('Entrez un nombre: '))
-    data.append(int('Entrez un nombre: '))
-    data.sort()
-    print(data)
+    numbers = []
+    numbers.append(int(input('Entrez un nombre: ')))
+    numbers.append(int(input('Entrez un nombre: ')))
+    numbers.append(int(input('Entrez un nombre: ')))   
+    numbers.sort()
+    print(numbers)
 
 ../..
 
