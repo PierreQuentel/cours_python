@@ -216,9 +216,37 @@ Accès à un caractère par index
 ../..
 Chaines de caractères
 =====================
-Tranches
+Tranches (slices)
 --------
 
+<pre>
+ +---+---+---+---+---+
+ | s | a | l | u | t |
+ +---+---+---+---+---+
+   0   1   2   3   4
+  -5  -4  -3  -2  -1
+</pre>
+
+Le premier indice est <b>compris</b>, le deuxième est <b>non compris</b>
+    >>> word[0:2]
+    'sa'
+    >>> word[2:4]
+    'lu'
+On peut omettre les indices pour le début ou la fin de la tranche. Ou utiliser un indice trop grand.
+    >>> word[:2]
+    'sa'
+    >>> word[3:]
+    'ut'
+    >>> word[3:100]
+    'ut'
+
+../..
+Chaines de caractères
+=====================
+Tranches (slices) - autre explication
+--------
+
+En écrivant les indices avant les cases, cela permet de calculer plus facilement les slices.
 <pre>
  +---+---+---+---+---+
  | s | a | l | u | t |
