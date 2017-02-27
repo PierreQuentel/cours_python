@@ -203,6 +203,7 @@ Accès à un caractère par index
    0   1   2   3   4
   -5  -4  -3  -2  -1
 </pre>
+    >>> word = 'salut'
     >>> word[4]
     't'
     >>> word[-2]
