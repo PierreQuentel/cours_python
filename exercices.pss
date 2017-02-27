@@ -291,7 +291,7 @@ _nom, numero, nom\_rue, code\_postal, nom\_ville_ :
 Les afficher au format
 
     Jean Dupont
-    5, rue des Postes
+    5 rue des Postes
     75003 Paris
 
 @pause
