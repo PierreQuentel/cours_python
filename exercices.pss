@@ -17,7 +17,7 @@ des deux derniers caractères.
 @pause
     `python
     s = 'exercice'
-    
+
     print(s[:2] + s[-2:])
 
 ../..
@@ -70,7 +70,7 @@ puis les affiche dans l’ordre croissant:
     numbers = []
     numbers.append(int(input('Entrez un nombre: ')))
     numbers.append(int(input('Entrez un nombre: ')))
-    numbers.append(int(input('Entrez un nombre: ')))   
+    numbers.append(int(input('Entrez un nombre: ')))
     numbers.sort()
     print(numbers)
 
@@ -101,11 +101,11 @@ __t__
 Boucles `for`
 =============
 Affichez chaque caractère d’une chaîne en utilisant une boucle `for`.
-@pause   
+@pause
     s = 'abcde'
     for car in s:
         print(car)
-    
+
 @pause
 Affichez les entiers de 0 compris à 15 non compris, de trois en trois, en
 utilisant une boucle `for` et l'instruction `range()`
@@ -291,7 +291,7 @@ _nom, numero, nom\_rue, code\_postal, nom\_ville_ :
 Les afficher au format
 
     Jean Dupont
-    5, rue des Postes
+    5 rue des Postes
     75003 Paris
 
 @pause
@@ -306,10 +306,10 @@ Formatage de chaines - corrections
     {numero} {nom_rue}
     {code_postal} {nom_ville}
     """
-    
+
     for adresse in adresses:
-        print(fmt.format(nom=adresse["nom"], 
-                         numero=adresse["numero"], 
+        print(fmt.format(nom=adresse["nom"],
+                         numero=adresse["numero"],
                          nom_rue=adresse["nom_rue"],
                          code_postal=adresse["code_postal"],
                          nom_ville=adresse["nom_ville"]))
@@ -325,7 +325,7 @@ Plus compact :
     {0[numero]} {0[nom_rue]}
     {0[code_postal]} {0[nom_ville]}
     """
-    
+
     for adresse in adresses:
         print(fmt.format(adresse))
 
@@ -337,7 +337,7 @@ Encore plus compact :
     {numero} {nom_rue}
     {code_postal} {nom_ville}
     """
-    
+
     for adresse in adresses:
         print(fmt.format(**adresse))
 
@@ -346,7 +346,7 @@ Encore plus compact :
 Fichiers
 ========
 On dispose d'un [fichier de logs](http://brython.info/cours_python/logs.html).
-Etablir l'ensemble des adresses vers lesquelles des requêtes POST ont été 
+Etablir l'ensemble des adresses vers lesquelles des requêtes POST ont été
 émises.
 
 On pourra utiliser un ensemble (set), à initialiser par
@@ -357,7 +357,7 @@ et utiliser la méthode `startswith()` des chaines de caractères :
 
     >>> 'Opera'.startswith('Op')
     True
-    
+
 
 @pause
     urls = set()
@@ -368,7 +368,7 @@ et utiliser la méthode `startswith()` des chaines de caractères :
                 urls.add(elts[1])
     print(urls)
 
-../..        
+../..
 Fichiers (suite)
 ========
 Comptez le nombre de fois où chaque URL apparaît.
@@ -391,7 +391,7 @@ On pourra utiliser un dictionnaire, avec clé : url et valeur : nombre d'occuren
 
 En utilisant une librairie (defaultdict ou Counter), on peut simplifier cette solution.
 
-../..    
+../..
 @index Erreurs et exceptions
 Erreurs et exceptions
 =====================
@@ -500,12 +500,12 @@ instances sont égales.
 
 @pause
     class TousEgaux:
-    
+
         def __eq__(self, other):
             return True
 
     assert TousEgaux() == TousEgaux()
-    
+
 Page 2
 ------
 **10.** Utilisez une exception pour calculer, dans une boucle évoluant de -3 à 3 compris, la valeur de sin(x)/x
@@ -528,14 +528,14 @@ Page 3
     # fonction
     def somme(a, b, c):
         return a + b + c
-    
+
     # programme principal -----------------------------------------------
     t = (23, 42, 13)
     print(somme(*t)
 ../..
 Page 4
 ------
-**5.** Utilisez une liste en compréhension pour obtenir la liste 
+**5.** Utilisez une liste en compréhension pour obtenir la liste
 
 >['ad', 'ae', 'bd', 'be','cd', 'ce']
 
