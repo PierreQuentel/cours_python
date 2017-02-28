@@ -23,7 +23,7 @@ Créé en 1989 par Guido van Rossum
 
 - recommandation : __choisir Python3 pour les nouveaux projets__
  - sauf dépendance incontournable à une librairie pas encore migrée en Python 3
- 
+
 ../..
 Caractéristiques
 ================
@@ -99,7 +99,7 @@ L'installation crée une commande _python_ dans l'invite de commande, qui lance 
 Ressources
 ==========
 
-- la documentation Python : [site Python](http://docs.python.org/3/), 
+- la documentation Python : [site Python](http://docs.python.org/3/),
   [tutoriel](https://docs.python.org/3/tutorial/index.html), doc Windows
 - forums : [comp.lang.python](https://groups.google.com/forum/?fromgroups#!forum/comp.lang.python), [comp.lang.python.fr](https://groups.google.com/forum/?fromgroups#!forum/fr.comp.lang.python),
 [reddit r/Python](http://www.reddit.com/r/Python/)
@@ -126,9 +126,9 @@ Définition de noms
     >>> width
     30
     >>> height = 5 * 9
-    
+
     >>> x = y = z = 0
-    
+
     >>> a, b = 0, 1
 ../..
 @index Chaines de caractères
@@ -173,12 +173,12 @@ Mode par défaut :
     >>> print(word)
     a
     b
-    
+
 Mode brut :
     >>> word = r'a\nb'
     >>> print(word)
     a\nb
-    
+
 ../..
 Chaines de caractères
 =====================
@@ -189,14 +189,14 @@ Concaténation par `+`, duplication par `*`
     'HelpA'
     >>> '<' + word*5 + '>'
     '&lt;HelpAHelpAHelpAHelpAHelpA>'
-    
+
 ../..
 Chaines de caractères
 =====================
 Accès à un caractère par index
 ------------------------------
 
-<pre>    
+<pre>
  +---+---+---+---+---+
  | s | a | l | u | t |
  +---+---+---+---+---+
@@ -281,7 +281,7 @@ Test d'appartenance
     False
     >>> 'x' in s
     False
-    
+
 ../..
 Chaines de caractères
 =====================
@@ -331,7 +331,7 @@ Concaténation par `+`, duplication par `*`
 
     >>> a = ['spam', 'eggs', 100, 1234]
     >>> 3 * a[:3] + ['Boo!']
-    ['spam', 'eggs', 100, 'spam', 'eggs', 100, 'spam', 'eggs', 100, 'Boo!']        
+    ['spam', 'eggs', 100, 'spam', 'eggs', 100, 'spam', 'eggs', 100, 'Boo!']
 
 Affectation et clonage
 
@@ -363,7 +363,7 @@ Découper une chaine de caractères en éléments d'une liste : méthode `split(
     >>> s = "et un ! et deux ! et trois zéros !"
     >>> s.split('!')
     ['et un ', ' et deux ', ' et trois zéros ', '']
-    
+
 Transformer une liste de chaines en une seule chaine : méthode `join` appliquée au _séparateur_
 
     >>> a = ["O rage", "ô désespoir", "ô vieillesse ennemie"]
@@ -489,7 +489,7 @@ Négation : `not`
 ../..
 Conditions
 ==========
-Test sur les types intégrés : `False` pour un nombre égal à 0, une chaine vide, 
+Test sur les types intégrés : `False` pour un nombre égal à 0, une chaine vide,
 une liste vide.
 
     x = []
@@ -544,7 +544,7 @@ Itération sur une chaine de caractères:
     c
     d
     e
-    f    
+    f
 
 ../..
 La fonction `range`
@@ -656,7 +656,7 @@ Définition de paramètres par défaut
     6
     >>> f(2, 3)
     5
-    
+
 ../..
 Fonctions
 =========
@@ -761,7 +761,7 @@ Appel de fonction par "déballage de tuple" _(tuple unpacking)_
     >>> t = (3,5)
     >>> f(*t)
     8
-    
+
 ou par "déballage de dictionnaire" _(dict unpacking)_
 
     >>> d = {'x':3,'y':5}
@@ -779,7 +779,7 @@ Création par _list comprehensions_
     [0, 2, 4, 6, 8]
     >>> [x*2 for x in range(5) if x != 3]
     [0, 2, 4, 8]
-    
+
 ../..
 Listes
 ======
@@ -850,7 +850,7 @@ Ensemble
 Intersection d'ensembles
     >>> couleurs = {'bleu','jaune','orange'}
     >>> panier & couleurs
-    {'orange'}   
+    {'orange'}
 Union
     >>> panier | couleurs
     {'jaune', 'poire', 'banane', 'abricot', 'bleu', 'pomme', 'orange'}
@@ -941,7 +941,7 @@ itère sur x et affecte les valeurs
     >>> a, b = {3: 9, 10: 20}
     >>> b
     10
-    
+
 Il faut le même nombre de valeurs des deux côtés !
 ../..
 Itérations
@@ -993,7 +993,7 @@ Dans l'invite de commandes, aller dans le répertoire de _script.py_ et exécute
     2
     3
     4
-    
+
 ../..
 Modules
 =======
@@ -1007,7 +1007,7 @@ Sauvegarde dans un fichier fibo.py
             print(b, end=' ')
             a, b = b, a + b
         print()
-    
+
     def fib2(n):
         """Return Fibonacci series up to n."""
         result = []
@@ -1076,9 +1076,9 @@ Pour structurer des librairies qui contiennent plusieurs modules
 Organisation en répertoires qui contiennent un fichier *\_\_init\_\_.py*
 
 ```raw
-+ sound                    
-    __init__.py               
-    + formats                 
++ sound
+    __init__.py
+    + formats
         __init__.py
         wavread.py
         ...
@@ -1179,7 +1179,7 @@ entre un caractère et un ou plusieurs octets) :
 - 'latin-1' : convertit __é__ en un octet : __e9__
 - 'ascii' : ne sait pas convertir les caractères accentués
 
-_Il faut spécifier l'encodage systématiquement_ : les valeurs par défaut varient 
+_Il faut spécifier l'encodage systématiquement_ : les valeurs par défaut varient
 selon les OS, les versions, etc.
 
 ../..
@@ -1236,7 +1236,7 @@ Permet de transformer en chaine des objets complexes (listes, dictionnaires...) 
     `python
     import pickle
     pickle.dump(x, f) # écrit l'objet x dans le fichier f
-    
+
     obj = pickle.load(f) # récupère l'objet x depuis le fichier f
 
 Format spécifique à Python.
@@ -1249,7 +1249,7 @@ dont les clés sont des chaines de caractères.
     `python
     import json
     json.dump(x, f) # écrit l'objet x dans le fichier f
-    
+
     obj = json.load(f) # récupère l'objet x depuis le fichier f
 
 Format universel.
@@ -1291,12 +1291,12 @@ Exemples :
     Traceback (most recent call last):
       File "<stdin>", line 1, in ?
     ZeroDivisionError: integer division or modulo by zero
-    
+
     >>> 4 + spam * 3
     Traceback (most recent call last):
       File "<stdin>", line 1, in ?
     NameError: name 'spam' is not defined
-    
+
     >>> '2' + 2
     Traceback (most recent call last):
       File "<stdin>", line 1, in ?
@@ -1424,11 +1424,11 @@ Exceptions
     >>> divise(2, 1)
     le resultat est 2
     fin de fonction
-    
+
     >>> divise(2, 0)
     division par zero!
     fin de fonction
-    
+
 ../..
 Exceptions
 ==========
@@ -1441,7 +1441,7 @@ Exceptions
     ...         print("le resultat est", result)
     ...     finally:
     ...         print("fin de fonction")
-    ...  
+    ...
     >>> divise("2", "1")
     fin de fonction
     Traceback (most recent call last):
@@ -1465,7 +1465,7 @@ Mot-clé `assert`
       File "<stdin>", line 2, in age
     AssertionError: pas né !
     >>>
-    
+
 ../..
 @index Espaces de noms
 Espaces de noms
@@ -1521,8 +1521,8 @@ NB : le nom `Y` n'est __pas__ dans l'espace de noms
 ../..
 Espaces de noms
 ===============
-A l'exécution, quand l'interpréteur rencontre un nom, il cherche dans l'espace 
-de nom le plus proche, puis "remonte" jusqu'au niveau module puis aux noms 
+A l'exécution, quand l'interpréteur rencontre un nom, il cherche dans l'espace
+de nom le plus proche, puis "remonte" jusqu'au niveau module puis aux noms
 intégrés de Python
 
     a = 6
@@ -1533,15 +1533,15 @@ intégrés de Python
             print(b)
             print(a)
         g(8)
- 
-Dans l'exécution de g : 
 
-- pas de nom `print` dans les espaces locaux ni globaux, mais `print` est une 
+Dans l'exécution de g :
+
+- pas de nom `print` dans les espaces locaux ni globaux, mais `print` est une
   fonction intégrée de Python
 - le nom `n` est dans l'espace de noms de g
-- pas de nom `b` dans l'espace de noms de g, on remonte jusqu'à l'espace de 
+- pas de nom `b` dans l'espace de noms de g, on remonte jusqu'à l'espace de
   noms de f
-- pas de nom `a` dans l'espace de noms de g ni de f, on remonte jusqu'à 
+- pas de nom `a` dans l'espace de noms de g ni de f, on remonte jusqu'à
   l'espace de noms global
 ../..
 Espaces de noms
@@ -1589,7 +1589,7 @@ Les noms définis dans `MyClass` (_attributs_) sont accessibles depuis l'espace 
 
 On peut modifier dynamiquement les attributs de la classe
 
-    >>> MyClass.i = 23456    
+    >>> MyClass.i = 23456
 ../..
 Classes
 =======
@@ -1642,7 +1642,7 @@ Pour initialiser une instance avec des attributs spécifiques : fonction spécia
 ../..
 Classes
 =======
-Bien distinguer attributs de classe (partagés entre toutes les instances) 
+Bien distinguer attributs de classe (partagés entre toutes les instances)
 
     >>> class A:
     ...     data = []
@@ -1752,7 +1752,7 @@ class A:
 class B(A):
     def __init__(self, x, y):
         A.__init__(self, x)
-        self.y = y    
+        self.y = y
 ```
 ../..
 Héritage
@@ -1811,7 +1811,7 @@ Héritage
 ========
 <code>issubclass(_A,B_)</code> teste si la classe _A_ hérite de la classe _B_
 
-<code>isinstance(_obj,A_)</code> teste si l'objet _obj_ est une instance de _A_ 
+<code>isinstance(_obj,A_)</code> teste si l'objet _obj_ est une instance de _A_
 ou d'une classe qui hérite de _A_
 
 Variante :  <code>isinstance(_obj, [A, B]_)</code>
@@ -1820,7 +1820,7 @@ Variante :  <code>isinstance(_obj, [A, B]_)</code>
         if not isinstance(x, [int, float]):
             raise ValueError("l'argument n'est pas un nombre")
         return x * x
-    
+
 ../..
 Méthodes spéciales
 ==================
@@ -1838,7 +1838,7 @@ class A:
 
 x = A('Einstein', 'Albert')
 print(x)
-```    
+```
 
 ../..
 Méthodes spéciales
@@ -1876,7 +1876,7 @@ de même : `__add__, __sub__, __div__, __pow__ ...`
 
 `__le__` pour <=
 `__gt__` pour > etc.
-    
+
 ../..
 @index Itérateurs, générateurs
 Itérateurs
@@ -1900,7 +1900,7 @@ Utilisés très fréquemment en Python
 ../..
 Itérateurs
 ==========
-Pour pouvoir itérer sur une instance d'une classe, la classe doit définir une 
+Pour pouvoir itérer sur une instance d'une classe, la classe doit définir une
 fonction `__iter__`, qui renvoie un objet qui possède une méthode `__next__`
 
 `__next__` déclenche `StopIteration` quand l'itération est finie.
@@ -1937,7 +1937,7 @@ Création automatique d'itérateurs : fonctions qui utilisent `yield` au lieu de
     >>> next(it)
     2
 
-Chaque appel de `next()` reprend l'exécution de la fonction à l'endroit où 
+Chaque appel de `next()` reprend l'exécution de la fonction à l'endroit où
 elle s'était arrêtée à l'itération précédente.
 
 ../..
@@ -2001,12 +2001,12 @@ Simplifie le passage d'argument à une fonction qui attend un itérateur
 
     >>> sum(i * i for i in range(10))
     285
-    
+
     >>> xvec = [10, 20, 30]
     >>> yvec = [7, 5, 3]
     >>> sum(x * y for x, y in zip(xvec, yvec))
     260
-    
+
     >>> unique_words = set(word for line in page for word in line.split())
 ../..
 @index Décorateurs
@@ -2023,7 +2023,7 @@ Fonction qui renvoie une autre fonction, utilisée avec `@`
     def f(...):
         ...
     f = controle(f)
-    
+
 ../..
 Décorateurs
 ===========
@@ -2035,12 +2035,12 @@ Exemple : vérifier qu'une fonction renvoie un entier
             assert isinstance(res, int)
             return res
         return g
-    
-    
+
+
     @check_int
     def f(x):
         return x*2
-    
+
     f(1)
     f('a')
 
@@ -2059,9 +2059,9 @@ _Le code est plus souvent lu qu'écrit_
 
     def insort_left(a, x, lo=0, hi=None):
         """Insert item x in list a, and keep it sorted assuming a is sorted.
-    
+
         If x is already in a, insert it to the left of the leftmost x.
-    
+
         Optional args lo (default 0) and hi (default len(a)) bound the
         slice of a to be searched.
         """
@@ -2080,14 +2080,14 @@ Quelques bonnes pratiques
     >>> items = list(name)
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-    TypeError: 'list' object is not callable        
+    TypeError: 'list' object is not callable
 
 - nom des modules en minuscule ; nom des classes commence par une majuscule ;
   constantes tout en majuscules
 
 - `variable_avec_tiret_bas` plutôt que `camelCase`
 
-- plutôt 5 lignes lisibles qu'une ligne illisible : boucles `for` indentées 
+- plutôt 5 lignes lisibles qu'une ligne illisible : boucles `for` indentées
   plutôt que des _list comprehensions_ complexes
 
 ../..
@@ -2096,14 +2096,14 @@ Quelques bonnes pratiques
 Des tests, des tests, des tests...
 
     import unittest
-    
-    
+
+
     class IntegerArithmeticTestCase(unittest.TestCase):
-    
+
         def testMultiply(self):
             self.assertEqual((0 * 10), 0)
             self.assertEqual((5 * 8), 40)
-    
+
     unittest.main()
 
 ../..
@@ -2185,14 +2185,14 @@ Fonctions aléatoires
 Librairie standard : `datetime`
 ===============================
 Heures et dates
-    
+
     >>> from datetime import date
     >>> now = date.today()
     >>> now
     datetime.date(2003, 12, 2)
     >>> now.strftime("%m-%d-%y. %d %b %Y is a %A on the %d day of %B.")
     '12-02-03. 02 Dec 2003 is a Tuesday on the 02 day of December.'
-    
+
     >>> # dates support calendar arithmetic
     >>> birthday = date(1964, 7, 31)
     >>> age = now - birthday
