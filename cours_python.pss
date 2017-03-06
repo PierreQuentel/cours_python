@@ -135,10 +135,11 @@ Définition de noms
 Chaines de caractères
 =====================
 Utilise `'` ou `"`
+
     `python
     'spam eggs'
     "spam eggs"
-
+    
     "doesn't"
     '"Yes," he said.'
 
@@ -148,11 +149,13 @@ Utilise `'` ou `"`
     'doesn\'t'
     "\"Yes,\" he said."
     '"Isn\'t," she said.'
+
 ../..
 Chaines de caractères
 =====================
 `\` pour continuer une ligne
 
+    `python
     hello = "This is a rather long string containing\n\
     several lines of text just as you would do in C.\n\
         Note that whitespace at the beginning of the line is\
@@ -440,6 +443,7 @@ Un bloc commence après une ligne qui se termine par `:`
 
 Toutes les lignes du même bloc doivent avoir la même indentation
 
+    `python
     if condition:
         x += 1
        print('condition vraie') # indentation incorrecte !
@@ -492,6 +496,7 @@ Conditions
 Test sur les types intégrés : `False` pour un nombre égal à 0, une chaine vide,
 une liste vide.
 
+    `python
     x = []
     if not x: # plus pythonique que "if x == []:"
         print("x est vide")
@@ -513,6 +518,7 @@ Test d'identité : `is`
 
 Opérateur ternaire
 
+    `python
     x = a[0] if a else None
 
 
@@ -1074,6 +1080,7 @@ Arborescence de fichiers :
 
 dans test.py :
 
+    `python
     import os            # biblithèque standard
     import mon_module    # répertoire courant
 
@@ -1096,6 +1103,7 @@ Organisation en répertoires qui contiennent un fichier *\_\_init\_\_.py*
         echo.py
 ```
 
+    `python
     import sound
     import sound.formats
     from sound.formats import wavread
@@ -1207,6 +1215,7 @@ Itération sur les lignes :
     `python
     for line in f:
         ...
+
 ../..
 Fichiers
 ========
@@ -1245,7 +1254,7 @@ Permet de transformer en chaine des objets complexes (listes, dictionnaires...) 
     `python
     import pickle
     pickle.dump(x, f) # écrit l'objet x dans le fichier f
-
+    
     obj = pickle.load(f) # récupère l'objet x depuis le fichier f
 
 Format spécifique à Python.
@@ -1258,7 +1267,7 @@ dont les clés sont des chaines de caractères.
     `python
     import json
     json.dump(x, f) # écrit l'objet x dans le fichier f
-
+    
     obj = json.load(f) # récupère l'objet x depuis le fichier f
 
 Format universel.
@@ -1352,6 +1361,7 @@ Exceptions
         print('erreur')
     else:
         print('ok')
+
 ../..
 Exceptions
 ==========
@@ -1509,20 +1519,19 @@ Espaces de noms
 Espaces de noms
 ===============
 
-```
-x = 0
-
-def f(x):
-    import Z
-
-import X
-
-from Y import A
-
-for i in range(5):
-    j = 2 * i
-```
-
+    `python
+    x = 0
+    
+    def f(x):
+        import Z
+    
+    import X
+    
+    from Y import A
+    
+    for i in range(5):
+        j = 2 * i
+    
 définit les noms `x, f, X, A, i, j` dans l'espace de noms global ; `x, Z` dans l'espace de noms de `f`
 (aucun rapport entre les deux `x`)
 
@@ -1534,6 +1543,7 @@ A l'exécution, quand l'interpréteur rencontre un nom, il cherche dans l'espace
 de nom le plus proche, puis "remonte" jusqu'au niveau module puis aux noms
 intégrés de Python
 
+    `python
     a = 6
     def f():
         b = 8
@@ -1575,16 +1585,17 @@ Classes
 =======
 Définis par le mot clé `class`
 
+    `python
     class ClassName:
         <statement-1>
         .
         .
         .
         <statement-N>
+    
+Le nom `ClassName` est ajouté dans l'espace de noms où la classe est définie.
 
-Le nom `ClassName` est ajouté dans l'espace de noms où la classe est définie
-
-Une classe possède son propre espace de noms
+Une classe possède son propre espace de noms.
 ../..
 Classes
 =======
@@ -1689,31 +1700,29 @@ Classes
 =======
 Les méthodes peuvent appeler d'autres méthodes
 
-```
-class Bag:
-
-    def __init__(self):
-        self.data = []
-
-    def add(self, x):
-        self.data.append(x)
-
-    def addtwice(self, x):
-        self.add(x)
-        self.add(x)
-```
+    `python
+    class Bag:
+    
+        def __init__(self):
+            self.data = []
+    
+        def add(self, x):
+            self.data.append(x)
+    
+        def addtwice(self, x):
+            self.add(x)
+            self.add(x)
 ../..
 Héritage
 ========
 
-```
-class DerivedClass(BaseClass):
-    <statement-1>
-    .
-    .
-    .
-    <statement-N>
-```
+    `python
+    class DerivedClass(BaseClass):
+        <statement-1>
+        .
+        .
+        .
+        <statement-N>
 
 `DerivedClass` _hérite_, ou est _dérivée_, ou est une _sous-classe_ de `BaseClass`
 ../..
@@ -1738,31 +1747,29 @@ Héritage
 ========
 Une sous-classe peut réécrire (_surcharger_) les fonctions de la classe dont elle hérite
 
-```
-class A:
-    x = 0
-    def show(self):
-        print('je suis A')
-
-classe B(A):
-    def show(self):
-        print('je suis B')
-```
+    `python
+    class A:
+        x = 0
+        def show(self):
+            print('je suis A')
+    
+    classe B(A):
+        def show(self):
+            print('je suis B')
 ../..
 Héritage
 ========
 On peut utiliser les fonctions de A dans les fonctions de B
 
-```
-class A:
-    def __init__(self, x):
-        self.x = x ** 2
-
-class B(A):
-    def __init__(self, x, y):
-        A.__init__(self, x)
-        self.y = y
-```
+    `python
+    class A:
+        def __init__(self, x):
+            self.x = x ** 2
+    
+    class B(A):
+        def __init__(self, x, y):
+            A.__init__(self, x)
+            self.y = y
 ../..
 Héritage
 ========
@@ -1787,13 +1794,16 @@ Héritage
 ========
 Héritage multiple
 
+    `python
     class Derived(Base1, Base2, Base3):
         <statement-1>
         .
         .
         .
         <statement-N>
-Construit pour la classe `Derived` un _ordre de résolution de méthodes_ (MRO) pour la résolution d'attributs ; exception en cas d'impossibilité
+
+Construit pour la classe `Derived` un _ordre de résolution de méthodes_ (MRO) 
+pour la résolution d'attributs ; exception en cas d'impossibilité.
 ../..
 Héritage
 ========
@@ -1825,6 +1835,7 @@ ou d'une classe qui hérite de _A_
 
 Variante :  <code>isinstance(_obj, [A, B]_)</code>
 
+    `python
     def carre(x):
         if not isinstance(x, [int, float]):
             raise ValueError("l'argument n'est pas un nombre")
@@ -1835,19 +1846,18 @@ Méthodes spéciales
 ==================
 `__str__(self)` pour définir le résultat de print(_objet_)
 
-```
-class A:
-
-    def __init__(self, nom, prenom):
-        self.nom = nom
-        self.prenom = prenom
-
-    def __str__(self):
-        return '{} {}'.format(self.prenom, self.nom)
-
-x = A('Einstein', 'Albert')
-print(x)
-```
+    `python
+    class A:
+    
+        def __init__(self, nom, prenom):
+            self.nom = nom
+            self.prenom = prenom
+    
+        def __str__(self):
+            return '{} {}'.format(self.prenom, self.nom)
+    
+    x = A('Einstein', 'Albert')
+    print(x)
 
 ../..
 Méthodes spéciales
@@ -1892,18 +1902,19 @@ Itérateurs
 ==========
 Utilisés très fréquemment en Python
 
+    `python
     for element in [1, 2, 3]:
         ...
-
+    
     for element in (1, 2, 3):
         ...
-
+    
     for key in {'one':1, 'two':2}:
         ...
-
+    
     for char in "123":
         ...
-
+    
     for line in open("myfile.txt"):
         ...
 ../..
@@ -1914,23 +1925,22 @@ fonction `__iter__`, qui renvoie un objet qui possède une méthode `__next__`
 
 `__next__` déclenche `StopIteration` quand l'itération est finie.
 
-```
-class Reverse:
-    """Iterateur pour parcourir une séquence à l'envers."""
-
-    def __init__(self, data):
-        self.data = data
-        self.index = len(data)
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self.index == 0:
-            raise StopIteration
-        self.index -= 1
-        return self.data[self.index]
-```
+    `python
+    class Reverse:
+        """Iterateur pour parcourir une séquence à l'envers."""
+    
+        def __init__(self, data):
+            self.data = data
+            self.index = len(data)
+    
+        def __iter__(self):
+            return self
+    
+        def __next__(self):
+            if self.index == 0:
+                raise StopIteration
+            self.index -= 1
+            return self.data[self.index]
 ../..
 Générateurs
 ===========
@@ -2023,12 +2033,14 @@ Décorateurs
 ===========
 Fonction qui renvoie une autre fonction, utilisée avec `@`
 
+    `python
     @controle
     def f(...):
         ...
 
 équivaut à
 
+    `python
     def f(...):
         ...
     f = controle(f)
@@ -2038,18 +2050,18 @@ Décorateurs
 ===========
 Exemple : vérifier qu'une fonction renvoie un entier
 
+    `python
     def check_int(func):
         def g(*args, **kw):
             res = func(*args, **kw)
             assert isinstance(res, int)
             return res
         return g
-
-
+    
     @check_int
     def f(x):
         return x*2
-
+    
     f(1)
     f('a')
 
@@ -2066,6 +2078,7 @@ _Le code est plus souvent lu qu'écrit_
 
 - docstring au début d'un modules, d'une fonction, d'une classe
 
+    `python
     def insort_left(a, x, lo=0, hi=None):
         """Insert item x in list a, and keep it sorted assuming a is sorted.
         
@@ -2104,6 +2117,7 @@ Quelques bonnes pratiques
 =========================
 Des tests, des tests, des tests...
 
+    `python
     import unittest
     
     
@@ -2144,16 +2158,19 @@ Arguments passés en ligne de commande (_python demo.py one two three_)
 
 Dans _demo.py_
 
+    `python
     import sys
     print(sys.argv) # liste des arguments passés après "python"
     ['demo.py', 'one', 'two', 'three']
 
 Entrée et sortie standard : `sys.stdin, sys.stdout`
 
+    `python
     sys.stdout.write('data')
 
 Peut être modifié pour rediriger la sortie de `print`
 
+    `python
     sys.stdout = file_obj # un objet avec une méthode write
     print('data')         # équivaut à file_obj.write('data\n')
 ../..
