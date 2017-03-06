@@ -24,27 +24,31 @@ def highlight(txt, string_color="blue", comment_color="green",
     res = html.PRE()
     i = 0
     name = ''
-    while i<len(txt):
+    while i < len(txt):
         car = txt[i]
-        if car in ["'",'"']:
-            k = i+1
-            while k<len(txt):
-                if txt[k]==car:
+        if car in ["'", '"']:
+            found_match = False
+            k = i + 1
+            while k < len(txt):
+                if txt[k] == car:
                     nb_as = 0
-                    j = k-1
+                    j = k - 1
                     while True:
-                        if txt[j]=='\\':
-                            nb_as+=1
+                        if txt[j] == '\\':
+                            nb_as += 1
                             j -= 1
                         else:
                             break
                     if nb_as % 2 == 0:
-                        res <= name+html.SPAN(txt[i:k+1],
+                        res <= name + html.SPAN(txt[i:k + 1],
                             style=dict(color=string_color))
                         i = k
                         name = ''
+                        found_match = True
                         break
                 k += 1
+            if not found_match:
+                name += car
         elif car == '#': # comment
             end = txt.find('\n', i)
             if end== -1:
