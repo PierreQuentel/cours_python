@@ -625,6 +625,7 @@ Serveur HTTP gérant les scripts CGI
 XML
 ===
 2 options :
+
 - `xml.dom` pour gérer le document dans son ensemble
 - `xml.sax` pour gérer chaque élément du document dans un gestionnaire d'événements
 ../..
