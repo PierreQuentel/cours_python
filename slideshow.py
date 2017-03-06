@@ -3,31 +3,32 @@ import markdown
 import highlight
 
 def _keydown(ev, path, zone, page):
-    if ev.keyCode in [39,40]: # key right or down : next page
-        show(path, zone, page+1)
+    if ev.keyCode in [39, 40]: # key right or down : next page
+        show(path, zone, page + 1)
         ev.preventDefault()    
-    elif ev.keyCode in [37,38]: #key left or up: previous page
-        show(path, zone, page-1)
+    elif ev.keyCode in [37, 38]: #key left or up: previous page
+        show(path, zone, page - 1)
         ev.preventDefault()
 
 def keydown(ev, slideshow, zone):
-    if ev.keyCode in [39,40]: # key right or down : next page
+    if ev.keyCode in [39, 40]: # key right or down : next page
         slideshow.page_num += 1
         if slideshow.page_num >= len(slideshow.pages):
             slideshow.page_num = 0
-    elif ev.keyCode in [37,38]: #key left or up: previous page
+    elif ev.keyCode in [37, 38]: #key left or up: previous page
         slideshow.page_num -= 1
         if slideshow.page_num < 0:
-            slideshow.page_num = len(slideshow.pages)-1
+            slideshow.page_num = len(slideshow.pages) - 1
     show_page(slideshow, zone, slideshow.page_num)
     ev.preventDefault()  
 
 def move_to(ev, slideshow, zone):
-    pc = (ev.x-ev.target.abs_left)/ev.target.width
-    nb_pages = len(slideshow.pages)-1
-    page = round(nb_pages*pc)
+    pc = (ev.x - ev.target.abs_left) / ev.target.width
+    nb_pages = len(slideshow.pages) - 1
+    page = round(nb_pages * pc)
     slideshow.page_num = page
-    new_pos = '%spx' %(ev.x-ev.target.abs_left-(document['tl_pos'].width/2))
+    new_pos = '%spx' %(ev.x  -ev.target.abs_left - 
+        (document['tl_pos'].width / 2))
     # show page at specified position
     show_page(slideshow, zone, page)
     # set new cursor position
@@ -51,14 +52,14 @@ class Slideshow:
         # directives for the document
         while src.startswith('@'):
             line_end = src.find('\n')
-            key,value = src[:line_end].split(' ',1)
+            key,value = src[:line_end].split(' ', 1)
             if key=='@title':
                 self.title = value
             elif key=='@pagenum':
                 self.show_page_num = True
             elif key=="@index":
                 self.contents.append([value, 0])
-            src = src[line_end+1:]
+            src = src[line_end + 1:]
 
         self.pages = []
         lines = []
@@ -69,26 +70,34 @@ class Slideshow:
             elif line.startswith('@pause'):
                 self.pages.append('\n'.join(lines))
             elif line.startswith('@index'):
-                self.contents.append([line.split(' ',1)[1], len(self.pages)])
+                self.contents.append([line.split(' ', 1)[1], len(self.pages)])
             else:
                 lines.append(line)
 
         if lines:
             self.pages.append('\n'.join(lines))
             
-def show(path, zone, page_num=0):
+def show(path, zone, page_num=None):
     slideshow = Slideshow(path)
     
-    if page_num<0:
+    if page_num is None:
+        page_num = 0
+        # check if page num was stored in a cookie
+        cookies = document.cookie
+        if cookies:
+            elts = dict([x.strip() for x in cookie.split('=')] 
+                for cookie in cookies.split(";"))
+            if "page" in elts:
+                page_num = int(elts["page"])
+    if page_num < 0:
         page_num = 0
     elif page_num >= len(slideshow.pages):
-        page_num = len(pages)-1
+        page_num = len(pages) - 1
+
     slideshow.page_num = page_num
     document.unbind('keydown')
     document.bind('keydown',lambda ev:keydown(ev, slideshow, zone))
     
-    print('show 89')
-
     show_page(slideshow, zone, page_num)
 
 def run_code(ev):
@@ -105,17 +114,17 @@ def show_page(slideshow, zone, page_num):
                 selected=page_num>=content[1])
 
     slideshow.page_num = int(page_num)
+    
+    # store page num in a cookie
+    document.cookie = "page={}".format(page_num)
+
     zone.clear()
     
-    print('show page', 109, markdown)
-            
     body = html.DIV()
     body.html = markdown.mark(slideshow.pages[page_num])[0]
     
-    print('marked')
-    
     if slideshow.contents:
-        body = html.DIV(toc+body)
+        body = html.DIV(toc + body)
 
     footer = html.DIV(Id="footer")
     if slideshow.title:
@@ -129,9 +138,11 @@ def show_page(slideshow, zone, page_num):
     timeline.bind('click', lambda ev:move_to(ev, slideshow, zone))
     tl_pos.bind('click', click_on_tl_pos)
     zone <= body+footer+timeline
+    footer.style.top = "{}px".format(int(window.innerHeight * 0.9))
+    timeline.style.top = "{}px".format(int(window.innerHeight * 0.85))
     tl_pos.style.left = '%spx' %(timeline.width*page_num/len(slideshow.pages))
     
-    for elt in zone.get(selector='.python')+zone.get(selector='.marked'):
+    for elt in zone.get(selector='.python'):
         src = elt.text.strip()
         width = max(len(line) for line in src.split('\n'))
         width = max(width, 30)
