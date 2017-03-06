@@ -17,7 +17,7 @@ des deux derniers caractères.
 @pause
     `python
     s = 'exercice'
-
+    
     print(s[:2] + s[-2:])
 
 ../..
@@ -306,7 +306,7 @@ Formatage de chaines - corrections
     {numero} {nom_rue}
     {code_postal} {nom_ville}
     """
-
+    
     for adresse in adresses:
         print(fmt.format(nom=adresse["nom"],
                          numero=adresse["numero"],
@@ -325,7 +325,7 @@ Plus compact :
     {0[numero]} {0[nom_rue]}
     {0[code_postal]} {0[nom_ville]}
     """
-
+    
     for adresse in adresses:
         print(fmt.format(adresse))
 
@@ -337,7 +337,7 @@ Encore plus compact :
     {numero} {nom_rue}
     {code_postal} {nom_ville}
     """
-
+    
     for adresse in adresses:
         print(fmt.format(**adresse))
 
@@ -377,7 +377,7 @@ On pourra utiliser un dictionnaire, avec clé : url et valeur : nombre d'occuren
 
 @pause
     urls = {}
-
+    
     with open('logs', encoding='utf-8') as file_obj:
         for line in file_obj:
             if line.startswith('POST'):
@@ -500,10 +500,10 @@ instances sont égales.
 
 @pause
     class TousEgaux:
-
+    
         def __eq__(self, other):
             return True
-
+    
     assert TousEgaux() == TousEgaux()
 
 Page 2
@@ -528,7 +528,7 @@ Page 3
     # fonction
     def somme(a, b, c):
         return a + b + c
-
+    
     # programme principal -----------------------------------------------
     t = (23, 42, 13)
     print(somme(*t)

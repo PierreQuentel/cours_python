@@ -1007,7 +1007,7 @@ Sauvegarde dans un fichier fibo.py
             print(b, end=' ')
             a, b = b, a + b
         print()
-
+    
     def fib2(n):
         """Return Fibonacci series up to n."""
         result = []
@@ -2059,9 +2059,9 @@ _Le code est plus souvent lu qu'écrit_
 
     def insort_left(a, x, lo=0, hi=None):
         """Insert item x in list a, and keep it sorted assuming a is sorted.
-
+        
         If x is already in a, insert it to the left of the leftmost x.
-
+        
         Optional args lo (default 0) and hi (default len(a)) bound the
         slice of a to be searched.
         """
@@ -2096,14 +2096,14 @@ Quelques bonnes pratiques
 Des tests, des tests, des tests...
 
     import unittest
-
-
+    
+    
     class IntegerArithmeticTestCase(unittest.TestCase):
-
+    
         def testMultiply(self):
             self.assertEqual((0 * 10), 0)
             self.assertEqual((5 * 8), 40)
-
+    
     unittest.main()
 
 ../..
