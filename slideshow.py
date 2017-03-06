@@ -138,9 +138,11 @@ def show_page(slideshow, zone, page_num):
     timeline.bind('click', lambda ev:move_to(ev, slideshow, zone))
     tl_pos.bind('click', click_on_tl_pos)
     zone <= body+footer+timeline
-    footer.style.top = "{}px".format(int(window.innerHeight * 0.9))
-    timeline.style.top = "{}px".format(int(window.innerHeight * 0.85))
+    wh = window.innerHeight
+    footer.style.top = "{}px".format(int(wh * 0.9))
+    timeline.style.top = "{}px".format(int(wh * 0.85))
     tl_pos.style.left = '%spx' %(timeline.width*page_num/len(slideshow.pages))
+    document["cours"].style.minHeight = "{}px".format(int(wh * 0.8))
     
     for elt in zone.get(selector='.python'):
         src = elt.text.strip()
