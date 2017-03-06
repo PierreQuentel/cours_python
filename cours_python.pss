@@ -809,6 +809,15 @@ Imbrication de _list comprehensions_
 ../..
 Tuples
 ======
+
+Tuple vide
+
+    >>> t = ()
+    >>> t
+    ()
+    >>> len(t)
+    0
+
 C'est la virgule qui crée un tuple, pas la parenthèse
 
     >>> t = 1, 2
