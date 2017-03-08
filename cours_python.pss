@@ -236,6 +236,9 @@ Le premier indice est <b>compris</b>, le deuxième est <b>non compris</b>
     'sa'
     >>> word[2:4]
     'lu'
+../..
+Chaines de caractères
+=====================
 On peut omettre les indices pour le début ou la fin de la tranche. Ou utiliser un indice trop grand.
     >>> word[:2]
     'sa'
