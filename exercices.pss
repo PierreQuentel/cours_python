@@ -173,6 +173,8 @@ et retourne le plus grand des trois.
             return y
         return z
 
+(autre solution page suivante)
+
 ../..
 Fonctions
 =========
@@ -194,13 +196,17 @@ retourne le plus grand.
             if num > plus_grand:
                 plus_grand = num
         return plus_grand
-@pause
 
     `python
     def maximum(x, *nums):
         values = [x] + list(nums)
         values.sort()
         return values[-1]
+
+    `python
+    def maximum(*nums):
+        return sorted(nums)[-1]
+
 
 ../..
 Fonctions
