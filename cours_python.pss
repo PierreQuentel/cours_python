@@ -1261,6 +1261,9 @@ Permet de transformer en chaine des objets complexes (listes, dictionnaires...) 
     obj = pickle.load(f) # récupère l'objet x depuis le fichier f
 
 Format spécifique à Python.
+
+Peut poser des problèmes de sécurité.
+
 ../..
 Sérialisation : le module `json`
 ==================================
