@@ -2125,13 +2125,17 @@ Des tests, des tests, des tests...
 
     `python
     import unittest
+    from fibo import fib2
     
     
-    class IntegerArithmeticTestCase(unittest.TestCase):
+    class FibonacciTestCase(unittest.TestCase):
+        def testFibonacciLowerThan4(self):
+            expected = [1, 1, 2, 3]
+            obtained = fib2(4)
+            self.assertEqual(expected, obtained)
     
-        def testMultiply(self):
-            self.assertEqual((0 * 10), 0)
-            self.assertEqual((5 * 8), 40)
+        def testFibonacciWith0ShouldReturnEmptyList(self):
+            self.assertEqual([], fib2(0))
     
     unittest.main()
 
