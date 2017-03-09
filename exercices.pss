@@ -88,15 +88,15 @@ Boucles `for`
 On considère la liste
     t = [1, 2, 4, 8, 16]
 
-Affichez chaque élément de la liste en utilisant une boucle `for`.
+1- Affichez chaque élément de la liste en utilisant une boucle `for`.
+
+2- Construire une nouvelle liste __t1__ constituée du double de chaque élément de
+__t__
 @pause
     `python
     for num in t:
         print(num)
 
-@pause
-Construire une nouvelle liste __t1__ constituée du double de chaque élément de
-__t__
 @pause
     `python
     t1 = []
@@ -107,7 +107,7 @@ __t__
 ou par _list comprehension_
 
     `python
-    t2 = [num * 2 for num in t1]
+    t1 = [2 * num for num in t]
 ../..
 Boucles `for`
 =============
