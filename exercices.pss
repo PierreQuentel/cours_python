@@ -530,6 +530,32 @@ Classes
     print(Carre(8))
 
 ../..
+Classes - Méthodes spéciales
+============================
+Surcharge d'opérateurs : créer une classe Vecteur dont chaque instance a un
+attribut `x` et `y`.
+
+Définir une méthode pour gérer l'addition de deux vecteurs.
+
+Rappel : la somme du vecteur V1(x1, y1) + V2(c2, y2) est le vecteur
+V(x1+y1, x2+y2)
+
+../..
+Classes - Méthodes spéciales
+============================
+
+    `python
+    class Vecteur:
+    
+        def __init__(self, x, y):
+            self.x = x
+            self.y = y
+        
+        def __add__(self, other)
+            return Vecteur(self.x + other.x, self.y + other.y)
+
+
+../..
 Classes
 =======
 Surcharge d'opérateur : créer une classe `TousEgaux` dont toutes les

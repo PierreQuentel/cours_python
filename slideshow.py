@@ -92,7 +92,7 @@ def show(path, zone, page_num=None):
     if page_num < 0:
         page_num = 0
     elif page_num >= len(slideshow.pages):
-        page_num = len(pages) - 1
+        page_num = len(slideshow.pages) - 1
 
     slideshow.page_num = page_num
     document.unbind('keydown')
@@ -152,3 +152,36 @@ def show_page(slideshow, zone, page_num):
         elt.html = highlight.highlight(src).html
         elt.style.width = '%sem' %int(0.7*width)
         elt.bind('click', run_code)
+
+    for elt in zone.get(selector='.python-console'):
+        src = elt.text.strip()
+        lines = src.split('\n')
+        result = ''
+        py = ''
+        py_starts = []
+        for line in lines:
+            if line.startswith('>>>') or line.startswith('...'):
+                py += line[3:].lstrip()+'\n'
+                py_starts.append('<span class="python-prompt">{}</span>'.format(line[:3]))
+            else:
+                if py:
+                    colored = highlight.highlight(py).html
+                    colored_lines = colored.split('\n')
+                    if result:
+                        result += '\n'
+                    result += '\n'.join(start+' '+line
+                        for (start, line) in zip(py_starts, colored_lines))
+                    py = ''
+                    py_starts = []
+                result += '\n' + line
+        if py:
+            colored = highlight.highlight(py).html
+            colored_lines = colored.split('\n')
+            if result:
+                result += '\n'
+            result += '\n'.join(start+' '+line
+                for (start, line) in zip(py_starts, colored_lines))
+            py = ''
+            py_starts = []
+
+        elt.html = result

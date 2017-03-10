@@ -70,6 +70,7 @@ Fonctions lambda
 
 équivaut à
 
+    `python
     def make_incrementor(n):
         def g(x):
             return x+n
@@ -80,6 +81,7 @@ Fonctions lambda
 Utilisation dans un GUI où la même fonction est utilisée pour
 gérer un clic sur une série de boutons
 
+    `python
     class Button:
     
         def __init__(self):
@@ -113,14 +115,14 @@ trie la liste sur place (ne retourne pas la liste)
 Si _key_ n'est pas défini, utilise l'opérateur `<` 
 entre les éléments de la liste
 
-    >>> t=list('azerty')
+    >>> t = list('azerty')
     >>> t.sort()
     >>> t
     ['a', 'e', 'r', 't', 'y', 'z']
 
 _reverse=True_ pour inverser le tri
 
-    >>> t=list('azerty')
+    >>> t = list('azerty')
     >>> t.sort(reverse=True)
     >>> t
     ['z', 'y', 't', 'r', 'e', 'a']
@@ -151,6 +153,7 @@ Tri "insensible à la casse"
 Tri de liste
 ============
 
+    `python
     class Z:
     
         def __init__(self, nom, prenom):
@@ -310,6 +313,7 @@ script
 
 Syntaxe : sur une des deux premières lignes
 
+    `python
     # -*- coding : utf-8 -*-
 ../..
 @index Expressions régulières
@@ -585,6 +589,7 @@ Client-serveur
 ==============
 Envoi de données au format JSON :
 
+    `python
     import urllib.request
     import json
     
@@ -607,6 +612,7 @@ Client-serveur
 ==============
 Serveur HTTP gérant les scripts CGI
 
+    `python
     import http.server as server
     from http.server import CGIHTTPRequestHandler
     
@@ -633,6 +639,7 @@ XML
 ===
 Lecture d'un document xml
 
+    `python
     import xml.dom.minidom
     import urllib.request    
 
@@ -656,6 +663,7 @@ où _handler_ est une instance d'une classe dérivée de `xml.sax.handler.Conten
 Cette classe doit redéfinir certaines méthodes de la classe pour gérer
 les événements : début/fin d'un élément par exemple
 
+    `python
     import xml.sax
     import urllib.request    
     
