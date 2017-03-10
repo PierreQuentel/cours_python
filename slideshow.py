@@ -161,7 +161,7 @@ def show_page(slideshow, zone, page_num):
         py_starts = []
         for line in lines:
             if line.startswith('>>>') or line.startswith('...'):
-                py += line[3:].lstrip()+'\n'
+                py += line[4:]+'\n'
                 py_starts.append('<span class="python-prompt">{}</span>'.format(line[:3]))
             else:
                 if py:

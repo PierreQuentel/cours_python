@@ -621,9 +621,9 @@ Serveur HTTP gérant les scripts CGI
     
     # démon http ; spécifie la classe qui gère les requêtes
     httpd = server.HTTPServer(server_address, CGIHTTPRequestHandler)
-
+    
     print("server running on port %s" % server_address[1])
-
+    
     # lance le serveur
     httpd.serve_forever()
 ../..
@@ -642,7 +642,7 @@ Lecture d'un document xml
     `python
     import xml.dom.minidom
     import urllib.request    
-
+    
     url = 'http://demo.tremorvideo.com/proddev/vast/' \
         'vast_inline_nonlinear.xml'
     f = urllib.request.urlopen(url)
