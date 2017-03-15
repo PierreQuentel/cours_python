@@ -15,10 +15,10 @@ Historique
 Créé en 1989 par Guido van Rossum
 
 - version 2.0 en 2000
- - version courante 2.7.11
+ - version courante 2.7.13
 
 - version 3.0 en 2008 (quelques incompatibilités)
- - version courante 3.5.1
+ - version courante 3.6.0
  - plus cohérent, "propre", meilleur support d'Unicode
 
 - recommandation : __choisir Python3 pour les nouveaux projets__
@@ -48,23 +48,18 @@ Popularité
 <tr>
 <td style="font-size:18px;" valign="top">
 Index [Tiobe](http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html)</td>
-<td><img src='tiobe.png' height=400></td>
-<td><i>Another interesting move concerns the rise of Python. It is currently at its all time high position. It is easy to learn, available everywhere and embraced by industry. Python is the current standard in scripting. </i></td>
+<td><img src='tiobe.png' height=500></td>
+
 </table>
 ../..
 Popularité
 ==========
-<table>
-<td>
-<td style="font-size:18px;" valign="top">
 Index [PyPL](https://sites.google.com/site/pydatalog/pypl/PyPL-PopularitY-of-Programming-Language)
 basé sur les recherches "tutorial <langage>" sur Google
-</td>
-<td>
+
 <img src='pypl.png' height=400>
-</td>
-</tr>
-</table>
+
+_"Worldwide, Java is the most popular language, Python grew the most in the last 5 years (7.6%) and PHP lost the most (-4.9%)"_
 ../..
 Popularité
 ==========
@@ -94,7 +89,7 @@ Aller sur le [site](http://python.org) et suivre les instructions
 
 L'installation crée une commande _python_ dans l'invite de commande, qui lance l'interpréteur interactif
 
-<img src="python.png" height=300>
+<img src="python.png" height=500>
 ../..
 Ressources
 ==========
@@ -723,6 +718,7 @@ Le paramètre n'est évalué qu'une seule fois
     >>> f(2)
     [1, 2]
 @pause
+
     `python-console
     >>> def f(a, L=None):
     ...    if L is None:
@@ -785,14 +781,6 @@ ou mots-clés ; ils sont gérés par des paramètres spécifiques.
 
 @pause
     `python-console
-    >>> def f(x, *args):
-    ...    print(args) # tuple
-    ...
-    >>> f(1, 2, 'a')
-    (2, 'a')
-
-@pause
-    `python-console
     >>> def f(x, *args, **kw):
     ...    print(kw) # dictionnaire
     ...
@@ -807,7 +795,7 @@ Appel de fonction par "déballage de tuple" _(tuple unpacking)_
     >>> def f(x, y):
     ...     return x + y
     ...
-    >>> t = (3,5)
+    >>> t = (3, 5)
     >>> f(*t)
     8
 
@@ -1056,6 +1044,7 @@ Enregistrement du programme dans un fichier _script.py_
 
 Dans l'invite de commandes, aller dans le répertoire de _script.py_ et exécuter
 
+    `console
     C:\test python>python script.py
     0
     1
@@ -2164,7 +2153,7 @@ Quelques bonnes pratiques
 - nom des modules en minuscule ; nom des classes commence par une majuscule ;
   constantes tout en majuscules
 
-- `variable_avec_tiret_bas` plutôt que `camelCase`
+- `variable_avec_tiret_bas` plutôt que `variableAvecTiretBas`
 
 - plutôt 5 lignes lisibles qu'une ligne illisible : boucles `for` indentées
   plutôt que des _list comprehensions_ complexes
@@ -2202,7 +2191,7 @@ Librairie standard : `os`
     >>> os.mkdir('nouveau') # crée un nouveau répertoire
     >>> os.rmdir('nouveau') # supprime un répertoire
 
-    >>> os.path.join('rep1','rep2','fichier.txt')
+    >>> os.path.join('rep1', 'rep2', 'fichier.txt')
     'rep1\\rep2\\fichier.txt'
 ../..
 Librairie standard : `shutil`
