@@ -187,7 +187,7 @@ Concaténation par `+`, duplication par `*`
     >>> word = 'Help' + 'A'
     >>> word
     'HelpA'
-    >>> '<' + word*5 + '>'
+    >>> '<' + word * 5 + '>'
     '&lt;HelpAHelpAHelpAHelpAHelpA>'
 
 ../..
@@ -266,8 +266,8 @@ En écrivant les indices avant les cases, cela permet de calculer plus facilemen
     'sa'
     >>> word[2:4]
     'lu'
-    >>> word[:2]
-    'sa'
+    >>> word[-3:]
+    'lut'
     >>> word[3:]
     'ut'
     >>> word[3:100]
@@ -515,6 +515,12 @@ une liste vide.
     if not x: # plus pythonique que "if x == []:"
         print("x est vide")
 
+@pause
+Opérateur ternaire
+
+    `python
+    x = a[0] if a else None
+
 ../..
 Conditions
 ==========
@@ -531,10 +537,6 @@ Test d'identité : `is`
     >>> a is c
     True
 
-Opérateur ternaire
-
-    `python
-    x = a[0] if a else None
 
 
 ../..

@@ -40,9 +40,11 @@ def click_on_tl_pos(ev):
 
 class Slideshow:
 
-    def __init__(self, path):
-        qs = window.Date.new().getTime()
-        self.src = src = open(path+'?foo=%s' %qs).read()
+    def __init__(self, path, add_query=True):
+        if add_query:
+            qs = window.Date.new().getTime()
+            path += '?foo=%s' %qs
+        self.src = src = open(path).read()
         self.title = ''
         self.show_page_num = False
         
@@ -137,7 +139,7 @@ def show_page(slideshow, zone, page_num):
     timeline <= tl_pos
     timeline.bind('click', lambda ev:move_to(ev, slideshow, zone))
     tl_pos.bind('click', click_on_tl_pos)
-    zone <= body+footer+timeline
+    zone <= body + footer + timeline
     wh = window.innerHeight
     footer.style.top = "{}px".format(int(wh * 0.9))
     timeline.style.top = "{}px".format(int(wh * 0.85))

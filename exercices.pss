@@ -189,6 +189,9 @@ retourne le plus grand.
 @pause
     `python
     def maximum(*nums):
+        if not nums:
+            print("Vous n'avez pas passé d'argument")
+            return
         plus_grand = nums[0]
         for num in nums[1:]:
             if num > plus_grand:
