@@ -358,19 +358,6 @@ Formatage de chaines - corrections
 Plus compact :
 
     `python
-    fmt = """{0[nom]}
-    {0[numero]} {0[nom_rue]}
-    {0[code_postal]} {0[nom_ville]}
-    """
-    
-    for adresse in adresses:
-        print(fmt.format(adresse))
-
-
-@pause
-
-Encore plus compact :
-    `python
     fmt = """{nom}
     {numero} {nom_rue}
     {code_postal} {nom_ville}
@@ -486,12 +473,15 @@ Compléter le programme précédent pour afficher le nombre de valeurs déjà en
 @index Classes
 Classes
 =======
-Définir une classe `Rectangle` avec un constructeur donnant des valeurs (longueur
-et largeur) par défaut et un attribut `nom` égal à "rectangle", une méthode d’affichage et
-une méthode `surface` renvoyant la surface d’une instance.
+Définir une classe `Rectangle` avec :
 
-Définir une classe `Carre` héritant de `Rectangle` et qui surcharge l’attribut d’instance `nom`
-égal à "carré".
+- un constructeur donnant des valeurs (longueur et largeur) par défaut 
+- un attribut `nom` égal à "rectangle"
+- une méthode d’affichage (`__str__`)
+- une méthode `surface` renvoyant la surface d’une instance
+
+Définir une classe `Carre` héritant de `Rectangle`, en donnant à l’attribut `nom`
+la valeur "carré".
 
 Dans le programme principal, instanciez un `Rectangle` et un `Carre` et affichez-les.
 ../..
@@ -501,11 +491,12 @@ Classes
     class Rectangle:
         """Classe des rectangles."""
     
+        nom = "rectangle"
+        
         def __init__(self, longueur=30, largeur=15):
             """Initialisation avec valeurs par defaut"""
             self.lon = longueur
             self.lar = largeur
-            self.nom = "rectangle"
     
         def surface(self):
             """Retourne la surface d'un rectangle."""
@@ -523,11 +514,11 @@ Classes
     class Carre(Rectangle):
         """Classe des carres (herite de Rectangle)."""
     
+        nom = "carré" 
+        
         def __init__(self, cote=10):
             """Constructeur avec valeur par defaut"""
             Rectangle.__init__(self, cote, cote)
-            # surchage d'attribut d'instance
-            self.nom = "carré"
     
     print(Rectangle(12, 8))
     print(Carre(8))

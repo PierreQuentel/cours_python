@@ -1234,6 +1234,12 @@ Le *mode* peut être
 
 Sur Windows, ajouter 'b' pour ouvrir les fichiers en mode binaire ('rb', 'wb'...)
 
+../..
+Fichiers
+========
+
+<code>open(_filename, mode, encoding_)</code>
+
 *encoding* spécifie l'encodage d'un fichier texte (la table de conversion
 entre un caractère et un ou plusieurs octets) :
 
@@ -1243,6 +1249,11 @@ entre un caractère et un ou plusieurs octets) :
 
 _Il faut spécifier l'encodage systématiquement_ : les valeurs par défaut varient
 selon les OS, les versions, etc.
+
+*encoding* doit être passé comme argument mot-clé :
+
+    `python
+    open("fichier.txt", "r", encoding="utf-8")
 
 ../..
 Fichiers
@@ -1291,21 +1302,6 @@ Utiliser de préférence `with` pour ne pas avoir à fermer explicitement
     ...     read_data = f.read()
     >>> f.closed
     True
-../..
-Sérialisation : le module `pickle`
-==================================
-Permet de transformer en chaine des objets complexes (listes, dictionnaires...) pour les stocker ou les envoyer sur le réseau
-
-    `python
-    import pickle
-    pickle.dump(x, f) # écrit l'objet x dans le fichier f
-    
-    obj = pickle.load(f) # récupère l'objet x depuis le fichier f
-
-Format spécifique à Python.
-
-Peut poser des problèmes de sécurité.
-
 ../..
 Sérialisation : le module `json`
 ==================================
@@ -1658,6 +1654,13 @@ Les noms définis dans `MyClass` (_attributs_) sont accessibles depuis l'espace 
 On peut modifier dynamiquement les attributs de la classe
 
     >>> MyClass.i = 23456
+
+et ajouter des attributs de classe "à la volée" : 
+
+    >>> MyClass.j = 8
+    >>> MyClass.j
+    8
+
 ../..
 Classes
 =======
@@ -1672,6 +1675,13 @@ L'instance possède les mêmes attributs que la classe
 
     >>> x.i
     12345
+
+On peut ajouter des attributs d'instance "à la volée" :
+
+    >>> x.name = "homer"
+    >>> x.name
+    'homer'
+    
 ../..
 Classes
 =======
@@ -1685,7 +1695,7 @@ Par convention, on les écrit avec l'instance comme premier argument, appelé `s
     ...         print('hello')
     ...
     ...     def greet(self, name):
-    ...         print('hello, ',name)
+    ...         print('hello, ', name)
     ...
     >>> x = MyClass()
     >>> x.f()
@@ -1801,7 +1811,7 @@ Une sous-classe peut réécrire (_surcharger_) les fonctions de la classe dont e
         def show(self):
             print('je suis A')
     
-    classe B(A):
+    class B(A):
         def show(self):
             print('je suis B')
 ../..
@@ -1876,9 +1886,9 @@ Ordre de résolution quand 2 classes parentes définissent le même attribut
 ../..
 Héritage
 ========
-<code>issubclass(_A,B_)</code> teste si la classe _A_ hérite de la classe _B_
+<code>issubclass(_A, B_)</code> teste si la classe _A_ hérite de la classe _B_
 
-<code>isinstance(_obj,A_)</code> teste si l'objet _obj_ est une instance de _A_
+<code>isinstance(_obj, A_)</code> teste si l'objet _obj_ est une instance de _A_
 ou d'une classe qui hérite de _A_
 
 Variante :  <code>isinstance(_obj, [A, B]_)</code>
@@ -1892,7 +1902,7 @@ Variante :  <code>isinstance(_obj, [A, B]_)</code>
 ../..
 Méthodes spéciales
 ==================
-`__str__(self)` pour définir le résultat de print(_objet_)
+`__str__(self)` pour définir le résultat de `print(_objet_)`
 
     `python
     class A:
@@ -2124,7 +2134,7 @@ _Le code est plus souvent lu qu'écrit_
 - indentation : 4 espaces
 - lignes : pas plus de 79 caractères
 
-- docstring au début d'un modules, d'une fonction, d'une classe
+- docstring au début d'un module, d'une fonction, d'une classe
 
     `python
     def insort_left(a, x, lo=0, hi=None):
@@ -2136,7 +2146,8 @@ _Le code est plus souvent lu qu'écrit_
         slice of a to be searched.
         """
 
-La chaine devient l'attribut `__doc__` de la fonction.
+La chaine devient l'attribut `__doc__` du module, de la fonction, de la
+classe.
 
 ../..
 Quelques bonnes pratiques
@@ -2171,6 +2182,7 @@ Des tests, des tests, des tests...
     
     
     class FibonacciTestCase(unittest.TestCase):
+    
         def testFibonacciLowerThan4(self):
             expected = [1, 1, 2, 3]
             obtained = fib2(4)
@@ -2253,11 +2265,11 @@ Fonctions aléatoires
     >>> import random
     >>> random.choice(['apple', 'pear', 'banana'])
     'apple'
-    >>> random.sample(xrange(100), 10)   # sampling without replacement
+    >>> random.sample(range(100), 10)   # échantillon
     [30, 83, 16, 4, 8, 81, 41, 50, 18, 33]
     >>> random.random()    # random float
     0.17970987693706186
-    >>> random.randrange(6)    # random integer chosen from range(6)
+    >>> random.randrange(6)    # entier dans range(6)
     4
 ../..
 Librairie standard : `datetime`
@@ -2271,7 +2283,8 @@ Heures et dates
     >>> now.strftime("%m-%d-%y. %d %b %Y is a %A on the %d day of %B.")
     '12-02-03. 02 Dec 2003 is a Tuesday on the 02 day of December.'
 
-    >>> # dates support calendar arithmetic
+Opérations sur les dates
+
     >>> birthday = date(1964, 7, 31)
     >>> age = now - birthday
     >>> age.days
@@ -2292,6 +2305,3 @@ Modules standard `zlib, gzip, bz2, zipfile, tarfile`
     'witch which has which witches wrist watch'
     >>> zlib.crc32(s)
     226805979
-
-
-
