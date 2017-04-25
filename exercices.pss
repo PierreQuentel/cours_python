@@ -15,6 +15,7 @@ Etant donné une chaine __s__, afficher une chaine faite des deux premiers et
 des deux derniers caractères.
 
 @pause
+
     `python
     s = 'exercice'
     
@@ -37,7 +38,10 @@ print :
 
 @pause
 
-    print('un peu\nbeaucoup\npassionnément')
+    `python
+    print("""un peu
+    beaucoup
+    passionnément""")
     print('"je t\'aime" dit-elle')
     print('le fichier à importer est Z:\\nouveau\\fichier.txt')
     print(r'le fichier à importer est Z:\nouveau\fichier.txt')
@@ -53,6 +57,7 @@ Remplacer le troisième élément (7) par 8 et afficher la liste
 Ajouter l’élément 'toto' à la fin de la liste, et l’afficher
 
 @pause
+    `python
     t = [1, 2, 7, 3, 'a']
     t[2] = 8
     print(t)
@@ -66,7 +71,7 @@ Listes
 puis les affiche dans l’ordre croissant:
 
 @pause
-
+    `python
     numbers = []
     numbers.append(int(input('Entrez un nombre: ')))
     numbers.append(int(input('Entrez un nombre: ')))
@@ -83,25 +88,32 @@ Boucles `for`
 On considère la liste
     t = [1, 2, 4, 8, 16]
 
-Affichez chaque élément de la liste en utilisant une boucle `for`.
+1- Affichez chaque élément de la liste en utilisant une boucle `for`.
+
+2- Construire une nouvelle liste __t1__ constituée du double de chaque élément de
+__t__
 @pause
+    `python
     for num in t:
         print(num)
 
 @pause
-Construire une nouvelle liste __t1__ constituée du double de chaque élément de
-__t__
-@pause
+    `python
     t1 = []
     for num in t:
         t1.append(2 * num)
     print(t1)
 
+ou par _list comprehension_
+
+    `python
+    t1 = [2 * num for num in t]
 ../..
 Boucles `for`
 =============
 Affichez chaque caractère d’une chaîne en utilisant une boucle `for`.
 @pause
+    `python
     s = 'abcde'
     for car in s:
         print(car)
@@ -110,10 +122,10 @@ Affichez chaque caractère d’une chaîne en utilisant une boucle `for`.
 Affichez les entiers de 0 compris à 15 non compris, de trois en trois, en
 utilisant une boucle `for` et l'instruction `range()`
 @pause
-```
-for i in range(0, 15, 3):
-    print(i)
-```
+    `python
+    for i in range(0, 15, 3):
+        print(i)
+
 ../..
 Boucles "for"
 =============
@@ -121,6 +133,7 @@ Utilisez l’instruction `break` pour interrompre une boucle `for` d’affichage
 des entiers de 1 à 10 compris, lorsque la variable de boucle vaut 5.
 
 @pause
+    `python
     for i in range(1, 11):
         if i == 5:
             break
@@ -131,12 +144,11 @@ Utilisez l’instruction `continue` pour modifier une boucle `for` d’affichage
 de tous entiers de 1 à 10 compris, sauf lorsque la variable de boucle vaut 5.
 
 @pause
-```
-for i in range (1, 11):
-    if i == 5:
-        continue
-    print(i)
-```
+    `python
+    for i in range (1, 11):
+        if i == 5:
+            continue
+        print(i)
 ../..
 @index Fonctions
 Fonctions
@@ -148,27 +160,26 @@ Définir une fonction `max_de_trois()` qui prend trois nombres comme arguments
 et retourne le plus grand des trois.
 
 @pause
-
-```
-def max_de_deux(x, y):
-    if x > y:
-        return x
-    return y
-
-def max_de_trois(x, y, z):
-    if x >= y and x >= z:
-        return x
-    elif y >= x and y >= z:
+    `python
+    def max_de_deux(x, y):
+        if x > y:
+            return x
         return y
-    return z
-```
+    
+    def max_de_trois(x, y, z):
+        if x >= y and x >= z:
+            return x
+        elif y >= x and y >= z:
+            return y
+        return z
 
-@pause
+../..
+Fonctions
+=========
 
-```
-def max_de_trois(x, y, z):
-    return max_de_deux(x, max_de_deux(y, z))
-```
+    `python
+    def max_de_trois(x, y, z):
+        return max_de_deux(x, max_de_deux(y, z))
 
 ../..
 Fonctions
@@ -176,22 +187,23 @@ Fonctions
 Définir une fonction `maximum` qui prend un nombre indéterminé de nombres et
 retourne le plus grand.
 @pause
-```
-def maximum(*nums):
-    plus_grand = nums[0]
-    for num in nums[1:]:
-        if num > plus_grand:
-            plus_grand = num
-    return plus_grand
-```
+    `python
+    def maximum(*nums):
+        if not nums:
+            print("Vous n'avez pas passé d'argument")
+            return
+        plus_grand = nums[0]
+        for num in nums[1:]:
+            if num > plus_grand:
+                plus_grand = num
+        return plus_grand
 @pause
 
-```
-def maximum(x, *nums):
-    values = [x] + list(nums)
-    values.sort()
-    return values[-1]
-```
+    `python
+    def maximum(x, *nums):
+        values = [x] + list(nums)
+        values.sort()
+        return values[-1]
 
 ../..
 Fonctions
@@ -206,41 +218,37 @@ Appeler cette fonction :
 - avec deux arguments dont le nombre en premier
 
 @pause
-```
-def duplique(car, n=10):
-    print(car * n)
-
-duplique('x')
-duplique('y', 5)
-duplique(n=8, car='r')
-```
+    `python
+    def duplique(car, n=10):
+        print(car * n)
+    
+    duplique('x')
+    duplique('y', 5)
+    duplique(n=8, car='r')
 
 ../..
 Fonctions
 =========
 Ecrire une fonction qui prend un caractère (une chaine de longueur 1) et retourne `True` si c'est une voyelle, `False` sinon.
 @pause
-```
-def est_voyelle(car):
-    return car in 'aeiouy'
-```
+    `python
+    def est_voyelle(car):
+        return car in 'aeiouy'
+
 @pause
 Ecrire une fonction qui reconnait un palindrome (un mot qui se lit à l'endroit comme à l'envers, par exemple "laval")
 @pause
-```
-def est_palindrome(mot):
-    for i in range(int(len(mot) / 2)):
-        if mot[i] != mot[len(mot) - i - 1]:
-            return False
-    return True
-```
+    `python
+    def est_palindrome(mot):
+        for i in range(int(len(mot) / 2)):
+            if mot[i] != mot[len(mot) - i - 1]:
+                return False
+        return True
 
 @pause
-
-```
-def is_palin(s):
-    return s == s[::-1]
-```
+    `python
+    def is_palin(s):
+        return s == s[::-1]
 
 ../..
 Fonctions
@@ -249,17 +257,16 @@ Ecrire une fonction qui reconnait un pangramme (une phrase qui contient toutes l
 Tester avec : _"Portez ce vieux whisky au juge blond qui fume"_. La phrase ne contient que des lettres non accentuées et des
 espaces.
 @pause
-```
-def est_pangramme(phrase):
-    phrase = phrase.lower()
-    lettres = ''
-    for car in phrase:
-        if car == ' ':
-            continue
-        if not car in lettres:
-            lettres += car
-    return len(lettres) == 26
-```
+    `python
+    def est_pangramme(phrase):
+        phrase = phrase.lower()
+        lettres = ''
+        for car in phrase:
+            if car == ' ':
+                continue
+            if not car in lettres:
+                lettres += car
+        return len(lettres) == 26
 ../..
 @index Itérations
 Itérations
@@ -276,19 +283,19 @@ Ecrire un programme qui imprime le classement sous la forme :
     etc.
 
 @pause
-```
-pays = ['Belgique', 'Argentine', 'Espagne', 'Allemagne', 'Chili']
-points = [1494, 1455, 1370, 1347, 1269]
+    `python
+    pays = ['Belgique', 'Argentine', 'Espagne', 'Allemagne', 'Chili']
+    points = [1494, 1455, 1370, 1347, 1269]
+    
+    for i, (_pays, _pts) in enumerate(zip(pays, points)):
+        print(i + 1, _pays, ':', _pts, 'points')
+    
+    for i, (_pays, _pts) in enumerate(zip(pays, points), start=1):
+        print(i, _pays, ':', _pts, 'points')
+    
+    for i, x, y in zip(range(1, 6), pays, points):
+        print(i, x, ':', y, 'points')
 
-for i, (_pays, _pts) in enumerate(zip(pays, points)):
-    print(i + 1, _pays, ':', _pts, 'points')
-
-for i, (_pays, _pts) in enumerate(zip(pays, points), start=1):
-    print(i, _pays, ':', _pts, 'points')
-
-for i, x, y in zip(range(1, 6), pays, points):
-    print(i, x, ':', y, 'points')
-```
 ../..
 @index Import
 Scripts, modules, packages
@@ -301,12 +308,12 @@ de toutes les lettres minuscules.
 
 Utiliser ces modules pour imprimer une lettre minuscule prise au hasard.
 @pause
-```
-import random
-from string import ascii_lowercase
+    `python
+    import random
+    from string import ascii_lowercase
+    
+    print(random.choice(ascii_lowercase))
 
-print(random.choice(ascii_lowercase))
-```
 ../..
 @index Formatage de chaines
 Formatage de chaines
@@ -330,6 +337,7 @@ corrections sur les slides suivants
 Formatage de chaines - corrections
 ====================
 
+    `python
     fmt = """{nom}
     {numero} {nom_rue}
     {code_postal} {nom_ville}
@@ -349,18 +357,7 @@ Formatage de chaines - corrections
 
 Plus compact :
 
-    fmt = """{0[nom]}
-    {0[numero]} {0[nom_rue]}
-    {0[code_postal]} {0[nom_ville]}
-    """
-    
-    for adresse in adresses:
-        print(fmt.format(adresse))
-
-
-@pause
-
-Encore plus compact :
+    `python
     fmt = """{nom}
     {numero} {nom_rue}
     {code_postal} {nom_ville}
@@ -374,7 +371,7 @@ Encore plus compact :
 Fichiers
 ========
 On dispose d'un [fichier de logs](http://brython.info/cours_python/logs.html).
-Etablir l'ensemble des adresses vers lesquelles des requêtes POST ont été
+Etablir l'ensemble des URL vers lesquelles des requêtes POST ont été
 émises.
 
 On pourra utiliser un ensemble (set), à initialiser par
@@ -388,11 +385,12 @@ et utiliser la méthode `startswith()` des chaines de caractères :
 
 
 @pause
+    `python
     urls = set()
     with open('logs', encoding='utf-8') as file_obj:
         for line in file_obj:
             if line.startswith('POST'):
-		# Example: 'POST /sysbus/NMC:getWANStatus HTTP/1.1'
+        # Example: 'POST /sysbus/NMC:getWANStatus HTTP/1.1'
                 verb, path, version = line.split()
                 urls.add(path)
     print(urls)
@@ -405,6 +403,7 @@ Comptez le nombre de fois où chaque URL apparaît.
 On pourra utiliser un dictionnaire, avec clé : url et valeur : nombre d'occurences.
 
 @pause
+    `python
     urls = {}
     
     with open('logs', encoding='utf-8') as file_obj:
@@ -427,13 +426,12 @@ Erreurs et exceptions
 
 On rappelle le script qui calcule la valeur TTC d'un prix HT :
 
-```
-while True:
-    ht = input('prix HT: ')
-    if not ht:
-        break
-    print('prix ttc', 1.206 * float(ht))
-```
+    `python
+    while True:
+        ht = input('prix HT: ')
+        if not ht:
+            break
+        print('prix ttc', 1.206 * float(ht))
 
 En exécutant ce programme, entrer une lettre au lieu d'un chiffre.
 
@@ -441,86 +439,116 @@ Refaire une version qui imprime un message d'erreur si on saisit autre chose
 qu'un nombre, et redemande une nouvelle valeur.
 
 @pause
-```
-while True:
-    ht = input('Prix HT: ')
-    if not ht:
-        break
-    try:
-        print('Prix TTC', 1.206 * float(ht))
-    except ValueError:
-        print(ht, "n'est pas un nombre")
-```
+    `python
+    while True:
+        ht = input('Prix HT: ')
+        if not ht:
+            break
+        try:
+            print('Prix TTC', 1.206 * float(ht))
+        except ValueError:
+            print(ht, "n'est pas un nombre")
+
 ../..
 Erreurs et exceptions
 =====================
 Compléter le programme précédent pour afficher le nombre de valeurs déjà entrées
 (valides ou non)
 @pause
-```
-nb = 0
-while True:
-    ht = input('Prix HT: ')
-    if not ht:
-        break
-    try:
-        print('Prix TTC', 1.206 * float(ht))
-    except ValueError:
-        print(ht, "n'est pas un nombre")
-    finally:
-        nb += 1
-        print(nb, 'valeurs saisies')
-```
+    `python
+    nb = 0
+    while True:
+        ht = input('Prix HT: ')
+        if not ht:
+            break
+        try:
+            print('Prix TTC', 1.206 * float(ht))
+        except ValueError:
+            print(ht, "n'est pas un nombre")
+        finally:
+            nb += 1
+            print(nb, 'valeurs saisies')
+
 ../..
 @index Classes
 Classes
 =======
-Définir une classe `Rectangle` avec un constructeur donnant des valeurs (longueur
-et largeur) par défaut et un attribut `nom` égal à "rectangle", une méthode d’affichage et
-une méthode `surface` renvoyant la surface d’une instance.
+Définir une classe `Rectangle` avec :
 
-Définir une classe `Carre` héritant de `Rectangle` et qui surcharge l’attribut d’instance `nom`
-égal à "carré".
+- un constructeur donnant des valeurs (longueur et largeur) par défaut 
+- un attribut `nom` égal à "rectangle"
+- une méthode d’affichage (`__str__`)
+- une méthode `surface` renvoyant la surface d’une instance
+
+Définir une classe `Carre` héritant de `Rectangle`, en donnant à l’attribut `nom`
+la valeur "carré".
 
 Dans le programme principal, instanciez un `Rectangle` et un `Carre` et affichez-les.
 ../..
 Classes
 =======
-```
-class Rectangle:
-    """Classe des rectangles."""
+    `python
+    class Rectangle:
+        """Classe des rectangles."""
+    
+        nom = "rectangle"
+        
+        def __init__(self, longueur=30, largeur=15):
+            """Initialisation avec valeurs par defaut"""
+            self.lon = longueur
+            self.lar = largeur
+    
+        def surface(self):
+            """Retourne la surface d'un rectangle."""
+            return self.lon * self.lar
+    
+        def __str__(self):
+            """Affichage des caracteristiques d'un rectangle."""
+            return ("Le {} de côtés {} et {} a une surface de {}".format(
+                self.nom, self.lon, self.lar, self.surface()))
 
-    def __init__(self, longueur=30, largeur=15):
-        """Initialisation avec valeurs par defaut"""
-        self.lon = longueur
-        self.lar = largeur
-        self.nom = "rectangle"
-
-    def surface(self):
-        """Retourne la surface d'un rectangle."""
-        return self.lon * self.lar
-
-    def __str__(self):
-        """Affichage des caracteristiques d'un rectangle."""
-        return ("Le {} de côtés {} et {} a une surface de {}".format(
-            self.nom, self.lon, self.lar, self.surface()))
-```
 ../..
 Classes
 =======
-```
-class Carre(Rectangle):
-    """Classe des carres (herite de Rectangle)."""
+    `python
+    class Carre(Rectangle):
+        """Classe des carres (herite de Rectangle)."""
+    
+        nom = "carré" 
+        
+        def __init__(self, cote=10):
+            """Constructeur avec valeur par defaut"""
+            Rectangle.__init__(self, cote, cote)
+    
+    print(Rectangle(12, 8))
+    print(Carre(8))
 
-    def __init__(self, cote=10):
-        """Constructeur avec valeur par defaut"""
-        Rectangle.__init__(self, cote, cote)
-        # surchage d'attribut d'instance
-        self.nom = "carré"
+../..
+Classes - Méthodes spéciales
+============================
+Surcharge d'opérateurs : créer une classe Vecteur dont chaque instance a un
+attribut `x` et `y`.
 
-print(Rectangle(12, 8))
-print(Carre(8))
-```
+Définir une méthode pour gérer l'addition de deux vecteurs.
+
+Rappel : la somme du vecteur V1(x1, y1) + V2(c2, y2) est le vecteur
+V(x1+y1, x2+y2)
+
+../..
+Classes - Méthodes spéciales
+============================
+
+    `python
+    class Vecteur:
+    
+        def __init__(self, x, y):
+            self.x = x
+            self.y = y
+        
+        def __add__(self, other)
+            return Vecteur(self.x + other.x, self.y + other.y)
+
+
 ../..
 Classes
 =======
@@ -528,6 +556,7 @@ Surcharge d'opérateur : créer une classe `TousEgaux` dont toutes les
 instances sont égales.
 
 @pause
+    `python
     class TousEgaux:
     
         def __eq__(self, other):
@@ -535,10 +564,12 @@ instances sont égales.
     
     assert TousEgaux() == TousEgaux()
 
-Page 2
-------
-**10.** Utilisez une exception pour calculer, dans une boucle évoluant de -3 à 3 compris, la valeur de sin(x)/x
+../..
+Exceptions
+==========
+Utilisez une exception pour calculer, dans une boucle évoluant de -3 à 3 compris, la valeur de sin(x)/x
 @pause
+    `python
     # import
     from math import sin
     # programme principal -----------------------------------------------
@@ -549,45 +580,52 @@ Page 2
             print("{:.3f}".format(float(1)), end=" ")
     print()
 ../..
-Page 3
-------
-**6.** Écrire une autre fonction *somme* avec trois arguments, et qui renvoie leur somme. Dans le programme principal, définir un tuple de trois nombres, puis utilisez la syntaxe d’appel à la fonction qui décompresse le tuple. Affichez le résultat
+Appel de fonction
+=================
+Écrire une autre fonction *somme* avec trois arguments, et qui renvoie 
+leur somme. Dans le programme principal, définir un tuple de trois nombres, 
+puis utilisez la syntaxe d’appel à la fonction qui décompresse le tuple. 
+Affichez le résultat.
 @pause
 
-    # fonction
+    `python
     def somme(a, b, c):
         return a + b + c
     
-    # programme principal -----------------------------------------------
     t = (23, 42, 13)
-    print(somme(*t)
+    print(somme(*t))
 ../..
-Page 4
-------
-**5.** Utilisez une liste en compréhension pour obtenir la liste
+List comprehension
+==================
+Utilisez une liste en compréhension pour obtenir la liste
 
->['ad', 'ae', 'bd', 'be','cd', 'ce']
+    ['ad', 'ae', 'bd', 'be','cd', 'ce']
 
 à partir des chaînes "abc" et "de"
 
 Indication : utilisez deux boucles for imbriquées
 
-**8.** Écrire une fonction *compterMots* ayant un argument (une chaîne de caractères) er qui renvoie un dictionnaire qui contient la fréquence de tous les mots de la chaîne entrée.
+@pause
+
+    `python
+    t = []
+    for car1 in "abc":
+        for car2 in "de":
+            t.append(car1 + car2)
+
 ../..
-Page 7
-------
-**1.** Définir une classe *Rectangle* avec un constructeur donnant des valeurs (longueur et largeur) par défaut et un attribut nom = "rectangle", une méthode d’affichage et une méthode surface renvoyant la surface d’une instance.
+Dictionnaires
+=============
+Écrire une fonction *compterMots* ayant un argument (une chaîne de caractères)
+qui renvoie un dictionnaire qui contient la fréquence de tous les mots de la 
+chaîne entrée.
 
-Définir une classe *Carre* héritant de *Rectangle* et qui surcharge l’attribut d’instance : nom = "carré".
+@pause
+    `python
+    def compterMots(texte):
+        mots = texte.split() # découpage approximatif !
+        freqs = {}
+        for mot in mots:
+            freqs[mot] = freqs.get(mot, 0) + 1
+        return freqs
 
-Dans le programme principal, instanciez un *Rectangle* et un *Carre* et affichez-les.
-../..
-Page 7
-------
-**2.** Définir une classe *Point* avec un constructeur fournissant les coordonnées par défaut d’un point du plan (par exemple : x = 0.0 et y = 0.0).
-
-Définir une classe *Segment* dont le constructeur possède quatre paramètres : deux pour l’origine et deux pour l’extrémité. Ce constructeur définit deux attributs : orig et extrem, instances de la classe *Point*. De cette manière, vous concevez une classe composite : La classe *Segment* est composée de deux instances de la classe *Point*.
-
-Ajouter une méthode d’affichage.
-
-Enfin écrire un auto-test qui affiche une instance de *Segment* initialisée par les valeurs 1, 2, 3 et 4

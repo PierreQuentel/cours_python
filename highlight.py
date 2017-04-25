@@ -20,7 +20,7 @@ kw_pattern = '^('+'|'.join(keyword.kwlist)+')$'
 bf_pattern = '^('+builtin_funcs+')$'
 
 def highlight(txt, string_color="blue", comment_color="green",
-    keyword_color="purple"):
+    keyword_color="purple", builtin_func_color="#963"):
     res = html.PRE()
     i = 0
     name = ''
@@ -41,7 +41,7 @@ def highlight(txt, string_color="blue", comment_color="green",
                             break
                     if nb_as % 2 == 0:
                         res <= name + html.SPAN(txt[i:k + 1],
-                            style=dict(color=string_color))
+                            Class="python-string")
                         i = k
                         name = ''
                         found_match = True
@@ -52,10 +52,10 @@ def highlight(txt, string_color="blue", comment_color="green",
         elif car == '#': # comment
             end = txt.find('\n', i)
             if end== -1:
-                res <= html.SPAN(txt[i:],style=dict(color=comment_color))
+                res <= html.SPAN(txt[i:], Class="python-comment")
                 break
             else:
-                res <= html.SPAN(txt[i:end],style=dict(color=comment_color))
+                res <= html.SPAN(txt[i:end], Class="python-comment")
                 i = end-1
         elif car in letters:
             name += car
@@ -64,9 +64,9 @@ def highlight(txt, string_color="blue", comment_color="green",
         else:
             if name:
                 if re.search(kw_pattern,name):
-                    res <= html.SPAN(name,style=dict(color=keyword_color))
+                    res <= html.SPAN(name, Class="python-keyword")
                 elif re.search(bf_pattern,name):
-                    res <= html.SPAN(name,style=dict(color=keyword_color))
+                    res <= html.SPAN(name, Class="python-builtin")
                 else:
                     res <= name
                 name = ''

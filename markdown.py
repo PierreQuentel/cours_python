@@ -34,6 +34,8 @@ class CodeBlock:
             self.info = line[3:]
         elif line.startswith("`") and len(line) > 1:
             self.info = line[1:]
+        elif line.startswith(">>>"):
+            self.info = "python-console"
         else:
             self.info = None
     

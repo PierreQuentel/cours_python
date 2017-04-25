@@ -8,7 +8,7 @@
 
 <style>
 body,td {font-family: Arial;
-    font-size:1.3em;
+    font-size:1.2em;
 }
     
 #cours {
@@ -50,11 +50,38 @@ body,td {font-family: Arial;
     width: 50em;
 }
 
+.python-console{
+    background-color:#000;
+    font-family: "Consolas", "Courier New", "Monospace";
+    color: #fff;
+    margin-left:40px;
+    margin-right:40px;
+    padding: 7px;
+    border-style: solid;
+    border-color: #888;
+    border-width: 1px;
+    width: 70%;
+}
+.python-console span.python-prompt{
+    color: #ff6;
+}
+.python-console span.python-string{
+    color: #aaf;
+}
+.python-console span.python-comment{
+    color: #0f0;
+}
+.python-console span.python-keyword{
+    color: #f66;
+}
+.python-console span.python-builtin{
+    color: #f69;
+}
+
 .python{
     background-color:#eee;
     font-family: "Consolas", "Courier New", "Monospace";
     font-size: 1em;
-    font-weight: bold;
     margin-left: 40px;
     margin-right: 40px;
     padding: 7px;
@@ -63,6 +90,32 @@ body,td {font-family: Arial;
     border-width: 1px;
     border-radius: 5px;
     width: auto;
+}
+
+.python span.python-string{
+    color: blue;
+}
+.python span.python-comment{
+    color: green;
+}
+.python span.python-keyword{
+    color: purple;
+}
+.python span.python-builtin{
+    color: #963;
+}
+
+.console{
+    background-color:#000;
+    font-family: "Consolas", "Courier New", "Monospace";
+    color: #fff;
+    margin-left:40px;
+    margin-right:40px;
+    padding: 7px;
+    border-style: solid;
+    border-color: #888;
+    border-width: 1px;
+    width: 50em;
 }
 .raw{
     font-size: 0.9em;
@@ -73,7 +126,9 @@ body,td {font-family: Arial;
     width: auto;
 }
 
-code {color: #339;
+code {
+    color: #339;
+    font-size:1.2em;
     font-weight:bold;
 }
 em{

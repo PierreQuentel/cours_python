@@ -15,12 +15,14 @@ def keydown(ev, slideshow, zone):
         slideshow.page_num += 1
         if slideshow.page_num >= len(slideshow.pages):
             slideshow.page_num = 0
+        show_page(slideshow, zone, slideshow.page_num)
+        ev.preventDefault()  
     elif ev.keyCode in [37, 38]: #key left or up: previous page
         slideshow.page_num -= 1
         if slideshow.page_num < 0:
             slideshow.page_num = len(slideshow.pages) - 1
-    show_page(slideshow, zone, slideshow.page_num)
-    ev.preventDefault()  
+        show_page(slideshow, zone, slideshow.page_num)
+        ev.preventDefault()  
 
 def move_to(ev, slideshow, zone):
     pc = (ev.x - ev.target.abs_left) / ev.target.width
@@ -92,7 +94,7 @@ def show(path, zone, page_num=None):
     if page_num < 0:
         page_num = 0
     elif page_num >= len(slideshow.pages):
-        page_num = len(pages) - 1
+        page_num = len(slideshow.pages) - 1
 
     slideshow.page_num = page_num
     document.unbind('keydown')
@@ -137,7 +139,7 @@ def show_page(slideshow, zone, page_num):
     timeline <= tl_pos
     timeline.bind('click', lambda ev:move_to(ev, slideshow, zone))
     tl_pos.bind('click', click_on_tl_pos)
-    zone <= body+footer+timeline
+    zone <= body + footer +timeline
     wh = window.innerHeight
     footer.style.top = "{}px".format(int(wh * 0.9))
     timeline.style.top = "{}px".format(int(wh * 0.85))
@@ -152,3 +154,36 @@ def show_page(slideshow, zone, page_num):
         elt.html = highlight.highlight(src).html
         elt.style.width = '%sem' %int(0.7*width)
         elt.bind('click', run_code)
+
+    for elt in zone.get(selector='.python-console'):
+        src = elt.text.strip()
+        lines = src.split('\n')
+        result = ''
+        py = ''
+        py_starts = []
+        for line in lines:
+            if line.startswith('>>>') or line.startswith('...'):
+                py += line[4:]+'\n'
+                py_starts.append('<span class="python-prompt">{}</span>'.format(line[:3]))
+            else:
+                if py:
+                    colored = highlight.highlight(py).html
+                    colored_lines = colored.split('\n')
+                    if result:
+                        result += '\n'
+                    result += '\n'.join(start+' '+line
+                        for (start, line) in zip(py_starts, colored_lines))
+                    py = ''
+                    py_starts = []
+                result += '\n' + line
+        if py:
+            colored = highlight.highlight(py).html
+            colored_lines = colored.split('\n')
+            if result:
+                result += '\n'
+            result += '\n'.join(start+' '+line
+                for (start, line) in zip(py_starts, colored_lines))
+            py = ''
+            py_starts = []
+
+        elt.html = result
