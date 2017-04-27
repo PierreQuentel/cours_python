@@ -273,8 +273,8 @@ Itérations
 ==========
 Le classement FIFA par pays est fourni sous forme de deux tableaux :
 
-- pays = ['Belgique', 'Argentine', 'Espagne', 'Allemagne', 'Chili']
-- points = [1494, 1455, 1370, 1347, 1269]
+- equipes = ['Belgique', 'Argentine', 'Espagne', 'Allemagne', 'Chili']
+- scores = [1494, 1455, 1370, 1347, 1269]
 
 Ecrire un programme qui imprime le classement sous la forme :
 
@@ -284,17 +284,17 @@ Ecrire un programme qui imprime le classement sous la forme :
 
 @pause
     `python
-    pays = ['Belgique', 'Argentine', 'Espagne', 'Allemagne', 'Chili']
-    points = [1494, 1455, 1370, 1347, 1269]
+    equipes = ['Belgique', 'Argentine', 'Espagne', 'Allemagne', 'Chili']
+    scores = [1494, 1455, 1370, 1347, 1269]
     
-    for i, (_pays, _pts) in enumerate(zip(pays, points)):
-        print(i + 1, _pays, ':', _pts, 'points')
+    for i, (pays, points) in enumerate(zip(equipes, scores)):
+        print(i + 1, pays, ':', points, 'points')
     
-    for i, (_pays, _pts) in enumerate(zip(pays, points), start=1):
-        print(i, _pays, ':', _pts, 'points')
+    for i, (pays, points) in enumerate(zip(equipes, scores), start=1):
+        print(i, pays, ':', points, 'points')
     
-    for i, x, y in zip(range(1, 6), pays, points):
-        print(i, x, ':', y, 'points')
+    for i, pays, points in zip(range(1, 6), equipes, scores):
+        print(i, pays, ':', points, 'points')
 
 ../..
 @index Import
