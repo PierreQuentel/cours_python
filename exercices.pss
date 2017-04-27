@@ -409,12 +409,9 @@ On pourra utiliser un dictionnaire, avec clé : url et valeur : nombre d'occuren
     with open('logs', encoding='utf-8') as file_obj:
         for line in file_obj:
             if line.startswith('POST'):
-                elts = line.split()
-                url = elts[1]
-                if url not in urls:
-                    urls[url] = 1
-                else:
-                    urls[url] += 1
+                # Example: 'POST /sysbus/NMC:getWANStatus HTTP/1.1'
+                verb, path, version = line.split()
+                urls[path] = urls.get(path, 0) + 1
     print(urls)
 
 En utilisant une librairie (defaultdict ou Counter), on peut simplifier cette solution.
