@@ -390,7 +390,7 @@ et utiliser la méthode `startswith()` des chaines de caractères :
     with open('logs', encoding='utf-8') as file_obj:
         for line in file_obj:
             if line.startswith('POST'):
-        # Example: 'POST /sysbus/NMC:getWANStatus HTTP/1.1'
+                # Example: 'POST /sysbus/NMC:getWANStatus HTTP/1.1'
                 verb, path, version = line.split()
                 urls.add(path)
     print(urls)
