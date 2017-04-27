@@ -1373,7 +1373,7 @@ Exceptions
     ...         x = int(input("Veuillez entrer un nombre: "))
     ...         break
     ...     except ValueError:
-    ...         print("Ce n'est pas un nombre valide.  Recommencer...")
+    ...         print("Ce n'est pas un nombre valide. Recommencez...")
     ...
 
 Si une instruction du bloc `try` déclenche une exception, on arrête l'exécution du bloc
