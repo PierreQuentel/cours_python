@@ -475,7 +475,7 @@ Classes
 =======
 Définir une classe `Rectangle` avec :
 
-- un constructeur donnant des valeurs (longueur et largeur) par défaut 
+- un constructeur donnant des valeurs (longueur et largeur) par défaut
 - un attribut `nom` égal à "rectangle"
 - une méthode d’affichage (`__str__`)
 - une méthode `surface` renvoyant la surface d’une instance
@@ -514,7 +514,7 @@ Classes
     class Carre(Rectangle):
         """Classe des carres (herite de Rectangle)."""
     
-        nom = "carré" 
+        nom = "carré"
         
         def __init__(self, cote=10):
             """Constructeur avec valeur par defaut"""
@@ -582,9 +582,9 @@ Utilisez une exception pour calculer, dans une boucle évoluant de -3 à 3 compr
 ../..
 Appel de fonction
 =================
-Écrire une autre fonction *somme* avec trois arguments, et qui renvoie 
-leur somme. Dans le programme principal, définir un tuple de trois nombres, 
-puis utilisez la syntaxe d’appel à la fonction qui décompresse le tuple. 
+Écrire une autre fonction *somme* avec trois arguments, et qui renvoie
+leur somme. Dans le programme principal, définir un tuple de trois nombres,
+puis utilisez la syntaxe d’appel à la fonction qui décompresse le tuple.
 Affichez le résultat.
 @pause
 
@@ -617,7 +617,7 @@ Indication : utilisez deux boucles for imbriquées
 Dictionnaires
 =============
 Écrire une fonction *compterMots* ayant un argument (une chaîne de caractères)
-qui renvoie un dictionnaire qui contient la fréquence de tous les mots de la 
+qui renvoie un dictionnaire qui contient la fréquence de tous les mots de la
 chaîne entrée.
 
 @pause
