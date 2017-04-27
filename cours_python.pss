@@ -1253,7 +1253,7 @@ selon les OS, les versions, etc.
 *encoding* doit être passé comme argument mot-clé :
 
     `python
-    open("fichier.txt", "r", encoding="utf-8")
+    f = open("fichier.txt", "r", encoding="utf-8")
 
 ../..
 Fichiers
