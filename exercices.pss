@@ -371,7 +371,7 @@ Plus compact :
 Fichiers
 ========
 On dispose d'un [fichier de logs](http://brython.info/cours_python/logs.html).
-Etablir l'ensemble des URL vers lesquelles des requêtes POST ont été
+Établir l'ensemble des chemins d'URL vers lesquelles des requêtes POST ont été
 émises.
 
 On pourra utiliser un ensemble (set), à initialiser par
