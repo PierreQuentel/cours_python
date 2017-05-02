@@ -273,8 +273,8 @@ Itérations
 ==========
 Le classement FIFA par pays est fourni sous forme de deux tableaux :
 
-- pays = ['Belgique', 'Argentine', 'Espagne', 'Allemagne', 'Chili']
-- points = [1494, 1455, 1370, 1347, 1269]
+- equipes = ['Belgique', 'Argentine', 'Espagne', 'Allemagne', 'Chili']
+- scores = [1494, 1455, 1370, 1347, 1269]
 
 Ecrire un programme qui imprime le classement sous la forme :
 
@@ -284,17 +284,17 @@ Ecrire un programme qui imprime le classement sous la forme :
 
 @pause
     `python
-    pays = ['Belgique', 'Argentine', 'Espagne', 'Allemagne', 'Chili']
-    points = [1494, 1455, 1370, 1347, 1269]
+    equipes = ['Belgique', 'Argentine', 'Espagne', 'Allemagne', 'Chili']
+    scores = [1494, 1455, 1370, 1347, 1269]
     
-    for i, (_pays, _pts) in enumerate(zip(pays, points)):
-        print(i + 1, _pays, ':', _pts, 'points')
+    for i, (pays, points) in enumerate(zip(equipes, scores)):
+        print(i + 1, pays, ':', points, 'points')
     
-    for i, (_pays, _pts) in enumerate(zip(pays, points), start=1):
-        print(i, _pays, ':', _pts, 'points')
+    for i, (pays, points) in enumerate(zip(equipes, scores), start=1):
+        print(i, pays, ':', points, 'points')
     
-    for i, x, y in zip(range(1, 6), pays, points):
-        print(i, x, ':', y, 'points')
+    for i, pays, points in zip(range(1, 6), equipes, scores):
+        print(i, pays, ':', points, 'points')
 
 ../..
 @index Import
@@ -371,7 +371,7 @@ Plus compact :
 Fichiers
 ========
 On dispose d'un [fichier de logs](http://brython.info/cours_python/logs.html).
-Etablir l'ensemble des URL vers lesquelles des requêtes POST ont été
+Établir l'ensemble des chemins d'URL vers lesquelles des requêtes POST ont été
 émises.
 
 On pourra utiliser un ensemble (set), à initialiser par
@@ -390,7 +390,7 @@ et utiliser la méthode `startswith()` des chaines de caractères :
     with open('logs', encoding='utf-8') as file_obj:
         for line in file_obj:
             if line.startswith('POST'):
-        # Example: 'POST /sysbus/NMC:getWANStatus HTTP/1.1'
+                # Example: 'POST /sysbus/NMC:getWANStatus HTTP/1.1'
                 verb, path, version = line.split()
                 urls.add(path)
     print(urls)
@@ -409,12 +409,9 @@ On pourra utiliser un dictionnaire, avec clé : url et valeur : nombre d'occuren
     with open('logs', encoding='utf-8') as file_obj:
         for line in file_obj:
             if line.startswith('POST'):
-                elts = line.split()
-                url = elts[1]
-                if url not in urls:
-                    urls[url] = 1
-                else:
-                    urls[url] += 1
+                # Example: 'POST /sysbus/NMC:getWANStatus HTTP/1.1'
+                verb, path, version = line.split()
+                urls[path] = urls.get(path, 0) + 1
     print(urls)
 
 En utilisant une librairie (defaultdict ou Counter), on peut simplifier cette solution.
@@ -475,7 +472,7 @@ Classes
 =======
 Définir une classe `Rectangle` avec :
 
-- un constructeur donnant des valeurs (longueur et largeur) par défaut 
+- un constructeur donnant des valeurs (longueur et largeur) par défaut
 - un attribut `nom` égal à "rectangle"
 - une méthode d’affichage (`__str__`)
 - une méthode `surface` renvoyant la surface d’une instance
@@ -514,7 +511,7 @@ Classes
     class Carre(Rectangle):
         """Classe des carres (herite de Rectangle)."""
     
-        nom = "carré" 
+        nom = "carré"
         
         def __init__(self, cote=10):
             """Constructeur avec valeur par defaut"""
@@ -582,9 +579,9 @@ Utilisez une exception pour calculer, dans une boucle évoluant de -3 à 3 compr
 ../..
 Appel de fonction
 =================
-Écrire une autre fonction *somme* avec trois arguments, et qui renvoie 
-leur somme. Dans le programme principal, définir un tuple de trois nombres, 
-puis utilisez la syntaxe d’appel à la fonction qui décompresse le tuple. 
+Écrire une autre fonction *somme* avec trois arguments, et qui renvoie
+leur somme. Dans le programme principal, définir un tuple de trois nombres,
+puis utilisez la syntaxe d’appel à la fonction qui décompresse le tuple.
 Affichez le résultat.
 @pause
 
@@ -617,7 +614,7 @@ Indication : utilisez deux boucles for imbriquées
 Dictionnaires
 =============
 Écrire une fonction *compterMots* ayant un argument (une chaîne de caractères)
-qui renvoie un dictionnaire qui contient la fréquence de tous les mots de la 
+qui renvoie un dictionnaire qui contient la fréquence de tous les mots de la
 chaîne entrée.
 
 @pause
