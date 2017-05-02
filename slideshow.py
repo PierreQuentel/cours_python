@@ -124,6 +124,10 @@ def show_page(slideshow, zone, page_num):
     
     body = html.DIV()
     body.html = markdown.mark(slideshow.pages[page_num])[0]
+
+    wh = window.innerHeight
+    fontSize = int(18 * window.innerHeight / 800)
+    body.style.fontSize = "{}px".format(fontSize)
     
     if slideshow.contents:
         body = html.DIV(toc + body)
@@ -139,12 +143,14 @@ def show_page(slideshow, zone, page_num):
     timeline <= tl_pos
     timeline.bind('click', lambda ev:move_to(ev, slideshow, zone))
     tl_pos.bind('click', click_on_tl_pos)
+
     zone <= body + footer +timeline
+
     wh = window.innerHeight
-    footer.style.top = "{}px".format(int(wh * 0.9))
-    timeline.style.top = "{}px".format(int(wh * 0.85))
+    #footer.style.top = "{}px".format(int(wh * 0.9))
+    #timeline.style.top = "{}px".format(int(wh * 0.85))
     tl_pos.style.left = '%spx' %(timeline.width*page_num/len(slideshow.pages))
-    document["cours"].style.minHeight = "{}px".format(int(wh * 0.8))
+    document["cours"].style.minHeight = "{}px".format(int(wh * 0.9))
     
     for elt in zone.get(selector='.python'):
         src = elt.text.strip()
