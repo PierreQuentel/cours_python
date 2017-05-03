@@ -133,22 +133,22 @@ def show_page(slideshow, zone, page_num):
         body = html.DIV(toc + body)
 
     footer = html.DIV(Id="footer")
+    footer.style.fontSize = "{}px".format(fontSize)
     if slideshow.title:
         footer <= html.DIV(slideshow.title,style=dict(display='inline'))
     if slideshow.show_page_num:
         footer <= html.SPAN(' (%s/%s)' %(page_num+1, len(slideshow.pages)),
             style=dict(display='inline'))
     timeline = html.DIV(Id='timeline')
+    timeline.style.height = "{}px".format(int(fontSize/2))
     tl_pos = html.DIV(Id='tl_pos')
     timeline <= tl_pos
     timeline.bind('click', lambda ev:move_to(ev, slideshow, zone))
     tl_pos.bind('click', click_on_tl_pos)
 
-    zone <= body + footer +timeline
+    zone <= body + footer + timeline
 
     wh = window.innerHeight
-    #footer.style.top = "{}px".format(int(wh * 0.9))
-    #timeline.style.top = "{}px".format(int(wh * 0.85))
     tl_pos.style.left = '%spx' %(timeline.width*page_num/len(slideshow.pages))
     document["cours"].style.minHeight = "{}px".format(int(wh * 0.9))
     
