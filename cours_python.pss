@@ -425,7 +425,6 @@ Premiers pas en programmation
 =============================
 Suite de Fibonacci
 
-    `python-console
     >>> a, b = 0, 1
     >>> while b < 10:
     ...     print(b)
@@ -649,14 +648,12 @@ Fonctions
 =========
 Par défaut, une fonction renvoie `None`
 
-    `python-console
     >>> fib(0)
     >>> print(fib(0))
     None
 
 `return` pour définir une ou plusieurs valeur(s) de retour
 
-    `python-console
     >>> def fib2(n):
     ...     """Renvoie la suite de Fibonacci jusqu'à n."""
     ...     result = []
@@ -674,7 +671,6 @@ Fonctions
 =========
 Définition de paramètres par défaut
 
-    `python-console
     >>> def f(x, y=4):
     ...    return x + y
     ...
@@ -688,7 +684,6 @@ Fonctions
 =========
 Le paramètre par défaut est calculé au moment de la définition de la fonction:
 
-    `python-console
     >>> i = 5
     >>> def f(arg=i):
     ...     print(arg)
@@ -701,7 +696,6 @@ Fonctions
 =========
 Le paramètre n'est évalué qu'une seule fois
 
-    `python-console
     >>> def f(a, L=[]):
     ...    L.append(a)
     ...    return L
@@ -712,7 +706,6 @@ Le paramètre n'est évalué qu'une seule fois
     [1, 2]
 @pause
 
-    `python-console
     >>> def f(a, L=None):
     ...    if L is None:
     ...        L = []
@@ -730,20 +723,17 @@ Le paramètre n'est évalué qu'une seule fois
 Fonctions
 =========
 
-    `python-console
     >>> def f(x, y):
     ...     return x - y
     ...
 
 On peut appeler une fonction avec des _arguments positionnels_:
 
-    `python-console
     >>> f(1, 2)
     -1
 
 ou des _mots-clés_:
 
-    `python-console
     >>> f(y=6, x=2)
     -4
 ../..
@@ -751,7 +741,6 @@ Fonctions
 =========
 On ne peut pas donner deux fois le même argument:
 
-    `python-console
     >>> def f(x, y):
     ...     return x - y
     ...
@@ -765,7 +754,6 @@ Fonctions
 Une fonction peut être appelée avec un nombre indéterminé d'arguments positionnels
 ou mots-clés ; ils sont gérés par des paramètres spécifiques.
 
-    `python-console
     >>> def f(*args):
     ...    print(args) # tuple
     ...
@@ -773,7 +761,7 @@ ou mots-clés ; ils sont gérés par des paramètres spécifiques.
     (1, 2, 'a')
 
 @pause
-    `python-console
+
     >>> def f(x, *args, **kw):
     ...    print(kw) # dictionnaire
     ...
@@ -784,7 +772,6 @@ Fonctions
 =========
 Appel de fonction par "déballage de tuple" _(tuple unpacking)_
 
-    `python-console
     >>> def f(x, y):
     ...     return x + y
     ...
