@@ -6,7 +6,6 @@ Introduction à Python
 =====================
 
 <h2 style="padding-top:100px;padding-left:100px;">Adapté du [Tutoriel Python](http://docs.python.org/3.6/tutorial/index.html)</h2>
-<h3 style="padding-top:50px;padding-left:100px;">par Pierre Quentel quentel.pierre@orange.fr</h3>
 
 
 ../..
@@ -368,9 +367,9 @@ Découper une chaine de caractères en éléments d'une liste : méthode `split(
     >>> s = "La cigale et la fourmi"
     >>> s.split()
     ['La', 'cigale', 'et', 'la', 'fourmi']
-    >>> s = "et un ! et deux ! et trois zéros !"
+    >>> s = "et un ! et deux ! et trois zéro !"
     >>> s.split('!')
-    ['et un ', ' et deux ', ' et trois zéros ', '']
+    ['et un ', ' et deux ', ' et trois zéro ', '']
 
 Transformer une liste de chaines en une seule chaine : méthode `join` appliquée au _séparateur_
 
@@ -383,28 +382,28 @@ Listes
 ======
 Une liste peut contenir d'autres listes
     
-    >>> q = [2, 3]
-    >>> p = [1, q, 4]
-    >>> len(p)
+    >>> b = [2, 3]
+    >>> a = [1, b, 4]
+    >>> len(a)
     3
-    >>> p[1]
+    >>> a[1]
     [2, 3]
-    >>> p[1][0]
+    >>> a[1][0]
     2
 ../..
 Listes
 ======
 Ajout d'un élément à la fin d'une liste par `append`
     
-    >>> q = [2, 3]
-    >>> q.append('xtra')
-    >>> q
+    >>> t = [2, 3]
+    >>> t.append('xtra')
+    >>> t
     [2, 3, 'xtra']
 
 Insertion d'un élément à une position donnée par `insert`
-    `python-console
-    >>> q.insert(1, 'new')
-    >>> q
+
+    >>> t.insert(1, 'new')
+    >>> t
     [2, 'new', 3, 'xtra']
     >>>
 ../..
@@ -412,7 +411,6 @@ Tuples
 ======
 Comme une liste, mais immuable
 
-    `python-console
     >>> t = (1, 2, 'a')
     >>> t[1]
     2
@@ -462,7 +460,7 @@ Toutes les lignes du même bloc doivent avoir la même indentation
 ../..
 La fonction `print`
 ===================
-    `python-console
+
     >>> i = 256 * 256
     >>> print('La valeur de i est', i)
     La valeur de i est 65536
@@ -470,7 +468,7 @@ La fonction `print`
 ../..
 Conditions : `if, elif, else`
 =============================
-    `python-console
+
     >>> x = int(input("Please enter an integer: ")) # "raw_input" en Python 2
     Please enter an integer: 42
     >>> if x < 0:
@@ -493,7 +491,6 @@ Booléens : `True` et `False`
 
 Test d'égalité : `==`, d'inégalité `!=`
 
-    `python-console
     >>> 1 == 0
     False
     >>> 1 != 0
@@ -501,7 +498,6 @@ Test d'égalité : `==`, d'inégalité `!=`
 
 Négation : `not`
 
-    `python-console
     >>> not 1 == 0
     True
 ../..
@@ -526,7 +522,6 @@ Conditions
 ==========
 Test d'identité : `is`
 
-    `python-console
     >>> a = [1, 2]
     >>> b = a[:]
     >>> a == b # tous les éléments de chaque liste sont-ils égaux ?
@@ -544,7 +539,7 @@ Test d'identité : `is`
 Boucle `for`
 ============
 Un des outils les plus puissants de Python
-    `python-console
+
     >>> animal_list = ['chat', 'chien', 'oiseau']
     >>> for animal in animal_list:
     ...     print(animal, len(animal))
@@ -560,7 +555,6 @@ Boucle `for`
 ============
 Itération sur une chaine de caractères:
 
-    `python-console
     >>> for car in 'abcdef':
     ...     print(car)
     ...
@@ -574,7 +568,7 @@ Itération sur une chaine de caractères:
 ../..
 La fonction `range`
 ===================
-    `python-console
+
     >>> for i in range(5):
     ...     print(i)
     ...
@@ -590,13 +584,12 @@ Itérateurs
 ==========
 __[Python 2]__
 
-    `python-console
     >>> range(5)
     [0, 1, 2, 3, 4]
 > `range` renvoie une liste
 
 __[Python 3]__
-    `python-console
+
     >>> range(5)
     range(0, 5)
 
@@ -606,14 +599,12 @@ __[Python 3]__
 
 > Certaines fonctions prennent un itérable comme argument, par exemple `list`.
 
-    `python-console
     >>> list(range(5))
     [0, 1, 2, 3, 4]
 ../..
 `continue`
 ==========
 
-    `python-console
     >>> voyelles = 'aeiouy'
     >>> consonnes = ''
     >>> for car in 'une souris verte':
@@ -626,8 +617,8 @@ __[Python 3]__
     >>>
 ../..
 `break`
-==========
-    `python-console
+=======
+
     >>> while True:
     ...     car = int(input('Entrer un nombre de 0 à 5: '))
     ...     if 0 <= car <= 5:
@@ -641,7 +632,7 @@ __[Python 3]__
 @index Fonctions
 Fonctions
 =========
-    `python-console
+
     >>> def fib(n):
     ...     """Ecrit la suite de Fibonacci jusqu'à n."""
     ...     a, b = 0, 1
@@ -816,9 +807,9 @@ Création par _list comprehensions_
     `python-console
     >>> [x for x in range(5)]
     [0, 1, 2, 3, 4]
-    >>> [x*2 for x in range(5)]
+    >>> [x * 2 for x in range(5)]
     [0, 2, 4, 6, 8]
-    >>> [x*2 for x in range(5) if x != 3]
+    >>> [x * 2 for x in range(5) if x != 3]
     [0, 2, 4, 8]
 
 ../..
