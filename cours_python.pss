@@ -794,7 +794,6 @@ Appel de fonction par "déballage de tuple" _(tuple unpacking)_
 
 ou par "déballage de dictionnaire" _(dict unpacking)_
 
-    `python-console
     >>> d = {'x':3,'y':5}
     >>> f(**d)
     8
@@ -804,7 +803,6 @@ Listes
 ======
 Création par _list comprehensions_
 
-    `python-console
     >>> [x for x in range(5)]
     [0, 1, 2, 3, 4]
     >>> [x * 2 for x in range(5)]
@@ -817,7 +815,6 @@ Listes
 ======
 Imbrication de _list comprehensions_
 
-    `python-console
     >>> matrix = [
     ...     [1, 2, 3, 4],
     ...     [5, 6, 7, 8],
@@ -829,7 +826,7 @@ Imbrication de _list comprehensions_
 ../..
 `del`
 =====
-    `python-console
+
     >>> a = [-1, 1, 66.25, 333, 333, 1234.5]
     >>> del a[0]
     >>> a
@@ -846,7 +843,6 @@ Tuples
 
 Tuple vide
 
-    `python-console
     >>> t = ()
     >>> t
     ()
@@ -855,7 +851,6 @@ Tuple vide
 
 C'est la virgule qui crée un tuple, pas la parenthèse
 
-    `python-console
     >>> t = 1, 2
     >>> t
     (1, 2)
@@ -871,7 +866,6 @@ Ensemble (`set`)
 ================
 Comme une liste, mais sans duplication ni ordre
 
-    `python-console
     >>> panier = {'pomme', 'orange', 'pomme', 'poire', 'orange', 'banane'}
     >>> panier     # les doublons sont éliminés
     {'banane', 'poire', 'pomme', 'orange'} # Python 3
@@ -882,7 +876,6 @@ Comme une liste, mais sans duplication ni ordre
 
 ou création par _set comprehensions_
 
-    `python-console
     >>> a = {x for x in 'abracadabra' if x not in 'abc'}
     >>> a
     {'r', 'd'}
@@ -890,18 +883,18 @@ ou création par _set comprehensions_
 Ensemble
 ========
 
-    `python-console
     >>> panier.add('abricot')
     >>> panier
     {'banane', 'poire', 'abricot', 'pomme', 'orange'}
 
 Intersection d'ensembles
-    `python-console
+
     >>> couleurs = {'bleu','jaune','orange'}
     >>> panier & couleurs
     {'orange'}
+
 Union
-    `python-console
+
     >>> panier | couleurs
     {'jaune', 'poire', 'banane', 'abricot', 'bleu', 'pomme', 'orange'}
 ../..
