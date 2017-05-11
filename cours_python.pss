@@ -876,7 +876,7 @@ Ensemble
 
 Intersection d'ensembles
 
-    >>> couleurs = {'bleu','jaune','orange'}
+    >>> couleurs = {'bleu', 'jaune', 'orange'}
     >>> panier & couleurs
     {'orange'}
 
@@ -905,6 +905,20 @@ Associe une clé (immuable : chaine, entier, tuple...) à une valeur
     True
     >>> 'jack' not in tel
     False
+
+../..
+Dictionnaires
+=============
+
+    >>> tel['jenny']
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    KeyError: 'jenny'
+    >>> tel.get('guido')
+    4127
+    >>> tel.get('jenny') # renvoie None
+    >>> tel.get('jenny', 4000) # valeur par défaut
+    4000
 
 ../..
 Dictionnaires
@@ -978,17 +992,17 @@ Itérations
 ==========
 `enumerate` pour itérer sur le tuple (rang, valeur)
 
-    >>> for i, x in enumerate(['bordeaux', 'rennes']):
-    ...     print(i, x)
+    >>> for i, ville in enumerate(['bordeaux', 'rennes']):
+    ...     print(i, ville)
     ...
     0 bordeaux
     1 rennes
 
 plus "pythonique" que :
 
-    >>> _list = ['bordeaux','rennes']
-    >>> for i in range(len(_list)):   # ouh le débutant !
-    ...     print(i, _list[i])
+    >>> villes = ['bordeaux','rennes']
+    >>> for i in range(len(villes)):   # ouh le débutant !
+    ...     print(i, villes[i])
     ...
     0 bordeaux
     1 rennes
