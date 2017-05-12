@@ -1000,7 +1000,7 @@ Itérations
 
 plus "pythonique" que :
 
-    >>> villes = ['bordeaux','rennes']
+    >>> villes = ['bordeaux', 'rennes']
     >>> for i in range(len(villes)):   # ouh le débutant !
     ...     print(i, villes[i])
     ...
@@ -1157,16 +1157,16 @@ Sans arguments : liste les noms définis dans le module courant
 @index Formattage de chaines
 `str.format()`
 ==============
-Permet de mettre en forme une chaine de caractères selon certains paramètres
+Permet de mettre en forme une chaine de caractères selon certains paramètres.
 
 Exemple :
 
     >>> print('We are the {} who say "{}!"'.format('knights', 'Ni'))
     We are the knights who say "Ni!"
 
-Les séquences `{}` sont remplacées par les arguments de `format`
+Les séquences `{}` sont remplacées par les arguments de `format`.
 
-On peut spécifier le rang de l'argument à insérer :
+On peut spécifier le rang de l'argument à insérer
 
     >>> print('{0} and {1}'.format('spam', 'eggs'))
     spam and eggs
@@ -1254,6 +1254,7 @@ Fichiers
 Itération sur les lignes :
 
     `python
+    f = open("fichier.txt", "r", encoding="utf-8")
     for line in f:
         ...
 
@@ -1283,7 +1284,7 @@ Fichiers
 
 Utiliser de préférence `with` pour ne pas avoir à fermer explicitement
 
-    >>> with open('/tmp/workfile', 'r') as f:
+    >>> with open('/tmp/workfile', 'rb') as f:
     ...     read_data = f.read()
     >>> f.closed
     True
@@ -1887,7 +1888,7 @@ Variante :  <code>isinstance(_obj, [A, B]_)</code>
 ../..
 Méthodes spéciales
 ==================
-`__str__(self)` pour définir le résultat de `print(_objet_)`
+`__str__(self)` pour définir le résultat de `print(objet)`
 
     `python
     class A:
@@ -2164,7 +2165,7 @@ Des tests, des tests, des tests...
     `python
     import unittest
     from fibo import fib2
-    
+
     
     class FibonacciTestCase(unittest.TestCase):
     
@@ -2290,3 +2291,20 @@ Modules standard `zlib, gzip, bz2, zipfile, tarfile`
     'witch which has which witches wrist watch'
     >>> zlib.crc32(s)
     226805979
+
+../..
+Installation de packages tiers
+==============================
+
+Programme `pip` pour installer un package déposé sur le
+Python Package Index
+
+    `console
+    pip install flask
+
+`pip` installe automatiquement les packages dont dépend __flask__.
+
+Le package est ensuite disponible dans l'interpréteur :
+
+    >>> from flask import Flask
+    
