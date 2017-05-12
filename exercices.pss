@@ -271,21 +271,22 @@ espaces.
 @index Itérations
 Itérations
 ==========
-Le classement FIFA par pays est fourni sous forme de deux tableaux :
+Le classement FIFA par pays (au 9/2/2017) est fourni sous forme de deux
+tableaux :
 
-- equipes = ['Belgique', 'Argentine', 'Espagne', 'Allemagne', 'Chili']
-- scores = [1494, 1455, 1370, 1347, 1269]
+- equipes = ['Brésil', 'Argentine', 'Allemagne', 'Chili', 'Belgique']
+- scores = [1635, 1529, 1433, 1386, 1371]
 
 Ecrire un programme qui imprime le classement sous la forme :
 
-    1 Belgique : 1494 points
-    2 Argentine : 1455 points
+    1 Brésil : 1635 points
+    2 Argentine : 1529 points
     etc.
 
 @pause
     `python
-    equipes = ['Belgique', 'Argentine', 'Espagne', 'Allemagne', 'Chili']
-    scores = [1494, 1455, 1370, 1347, 1269]
+    equipes = ['Brésil', 'Argentine', 'Allemagne', 'Chili', 'Belgique']
+    scores = [1635, 1529, 1433, 1386, 1371]
     
     for i, (pays, points) in enumerate(zip(equipes, scores)):
         print(i + 1, pays, ':', points, 'points')
@@ -425,10 +426,10 @@ On rappelle le script qui calcule la valeur TTC d'un prix HT :
 
     `python
     while True:
-        ht = input('prix HT: ')
+        ht = input('Prix HT: ')
         if not ht:
             break
-        print('prix ttc', 1.206 * float(ht))
+        print('Prix TTC', 1.2 * float(ht))
 
 En exécutant ce programme, entrer une lettre au lieu d'un chiffre.
 
@@ -442,7 +443,7 @@ qu'un nombre, et redemande une nouvelle valeur.
         if not ht:
             break
         try:
-            print('Prix TTC', 1.206 * float(ht))
+            print('Prix TTC', 1.2 * float(ht))
         except ValueError:
             print(ht, "n'est pas un nombre")
 
@@ -459,7 +460,7 @@ Compléter le programme précédent pour afficher le nombre de valeurs déjà en
         if not ht:
             break
         try:
-            print('Prix TTC', 1.206 * float(ht))
+            print('Prix TTC', 1.2 * float(ht))
         except ValueError:
             print(ht, "n'est pas un nombre")
         finally:
