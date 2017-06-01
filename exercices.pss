@@ -529,7 +529,7 @@ attribut `x` et `y`.
 
 Définir une méthode pour gérer l'addition de deux vecteurs.
 
-Rappel : la somme du vecteur V1(x1, y1) + V2(c2, y2) est le vecteur
+Rappel : la somme du vecteur V1(x1, y1) + V2(x2, y2) est le vecteur
 V(x1+y1, x2+y2)
 
 ../..
