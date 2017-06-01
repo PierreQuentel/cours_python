@@ -1386,12 +1386,24 @@ Exceptions
 
     `python
     try:
-        x = 1
+        f()
     except:
         print('erreur')
     else:
-        print('ok')
+        suite()
 
+@pause
+
+Presque équivalent à 
+
+    `python
+    try:
+        f()
+        suite()
+    except:
+        print('erreur')
+
+sauf si `suite()` déclenche une exception...
 ../..
 Exceptions
 ==========
