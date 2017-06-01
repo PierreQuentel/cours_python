@@ -2,6 +2,11 @@ from browser import document, html, window
 import markdown
 import highlight
 
+def escape(html):
+    html = html.replace('<', '&lt;')
+    html = html.replace('>', '&gt;')
+    return html
+       
 def _keydown(ev, path, zone, page):
     if ev.keyCode in [39, 40]: # key right or down : next page
         show(path, zone, page + 1)
@@ -181,6 +186,8 @@ def show_page(slideshow, zone, page_num):
                         for (start, line) in zip(py_starts, colored_lines))
                     py = ''
                     py_starts = []
+                else:
+                    line = escape(line)
                 result += '\n' + line
         if py:
             colored = highlight.highlight(py).html
