@@ -165,7 +165,18 @@ et retourne le plus grand des trois.
         if x > y:
             return x
         return y
+
+ou en plus concis :
     
+    `python
+    def max_de_deux(x, y):
+        return x if x > y else y
+
+../..
+Fonctions
+=========
+
+    `python        
     def max_de_trois(x, y, z):
         if x >= y and x >= z:
             return x
@@ -173,9 +184,7 @@ et retourne le plus grand des trois.
             return y
         return z
 
-../..
-Fonctions
-=========
+ou réutiliser `max_de_deux()`
 
     `python
     def max_de_trois(x, y, z):
