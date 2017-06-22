@@ -857,45 +857,6 @@ Imbrication de _list comprehensions_
     >>> [[row[i] for row in matrix] for i in range(4)]
     [[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
 ../..
-@index Del
-`del`
-=====
-
-    >>> a = [-1, 1, 66.25, 333, 333, 1234.5]
-    >>> del a[0]
-    >>> a
-    [1, 66.25, 333, 333, 1234.5]
-    >>> del a[2:4]
-    >>> a
-    [1, 66.25, 1234.5]
-    >>> del a[:]
-    >>> a
-    []
-../..
-@index Tuples
-Tuples
-======
-
-Tuple vide
-
-    >>> t = ()
-    >>> t
-    ()
-    >>> len(t)
-    0
-
-C'est la virgule qui crée un tuple, pas la parenthèse
-
-    >>> t = 1, 2
-    >>> t
-    (1, 2)
-    >>> x = (1)
-    >>> x
-    1
-    >>> x = 1,
-    >>> x
-    (1,)
-../..
 @index Ensembles (set)
 Ensemble (`set`)
 ================
