@@ -108,9 +108,9 @@ Introduits par #
 
     `python
     # ceci est le premier commentaire
-    SPAM = 1                 # et ceci est le deuxième
+    spam = 1                 # et ceci est le deuxième
                              # ... et encore un !
-    STRING = "# Ceci n'est pas un commentaire."
+    string = "# Ceci n'est pas un commentaire."
 ../..
 Définition de noms
 ==================
@@ -234,17 +234,6 @@ Le premier indice est <b>compris</b>, le deuxième est <b>non compris</b>
     'sa'
     >>> word[2:4]
     'lu'
-../..
-Chaines de caractères
-=====================
-On peut omettre les indices pour le début ou la fin de la tranche. Ou utiliser un indice trop grand.
-
-    >>> word[:2]
-    'sa'
-    >>> word[3:]
-    'ut'
-    >>> word[3:100]
-    'ut'
 
 ../..
 Chaines de caractères
@@ -269,7 +258,7 @@ En écrivant les indices avant les cases, cela permet de calculer plus facilemen
     'lut'
     >>> word[3:]
     'ut'
-    >>> word[3:100]
+    >>> word[3:100] # pas d'exception
     'ut'
 
 ../..
