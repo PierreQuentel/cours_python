@@ -407,6 +407,22 @@ Insertion d'un élément à une position donnée par `insert`
     [2, 'new', 3, 'xtra']
     >>>
 ../..
+Listes
+======
+
+`del` pour supprimer des éléments
+
+    >>> a = [-1, 1, 66.25, 333, 333, 1234.5]
+    >>> del a[0]
+    >>> a
+    [1, 66.25, 333, 333, 1234.5]
+    >>> del a[2:4]
+    >>> a
+    [1, 66.25, 1234.5]
+    >>> del a[:]
+    >>> a
+    []
+../..
 Tuples
 ======
 Comme une liste, mais immuable
@@ -420,6 +436,34 @@ Comme une liste, mais immuable
     TypeError: 'tuple' object does not support item assignment
 
 ../..
+Tuples
+======
+
+C'est la virgule qui crée un tuple, pas la parenthèse
+
+    >>> t = 1, 2
+    >>> t
+    (1, 2)
+
+@pause
+Tuple avec un seul élément
+
+    >>> x = (1) # eh non !
+    >>> x
+    1
+    >>> x = 1,
+    >>> x
+    (1,)
+
+@pause
+Tuple vide
+
+    >>> t = ()
+    >>> t
+    ()
+
+../..
+
 @index Programmation
 Premiers pas en programmation
 =============================
@@ -672,18 +716,19 @@ Fonctions
 =========
 Définition de paramètres par défaut
 
-    >>> def f(x, y=4):
+    >>> def add(x, y=4):
     ...    return x + y
     ...
-    >>> f(2)
+    >>> add(2)
     6
-    >>> f(2, 3)
+    >>> add(2, 3)
     5
 
 ../..
 Fonctions
 =========
-Le paramètre par défaut est calculé au moment de la définition de la fonction:
+Le paramètre par défaut est calculé _une fois pour toutes_ au moment de la
+définition de la fonction:
 
     >>> i = 5
     >>> def f(arg=i):
@@ -777,13 +822,13 @@ Appel de fonction par "déballage de tuple" _(tuple unpacking)_
     ...     return x + y
     ...
     >>> t = (3, 5)
-    >>> f(*t)
+    >>> f(*t) # comme f(3, 5)
     8
 
 ou par "déballage de dictionnaire" _(dict unpacking)_
 
     >>> d = {'x':3,'y':5}
-    >>> f(**d)
+    >>> f(**d) # comme f(x=3, y=5)
     8
 ../..
 @index List comprehensions
@@ -811,43 +856,6 @@ Imbrication de _list comprehensions_
     ...
     >>> [[row[i] for row in matrix] for i in range(4)]
     [[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
-../..
-`del`
-=====
-
-    >>> a = [-1, 1, 66.25, 333, 333, 1234.5]
-    >>> del a[0]
-    >>> a
-    [1, 66.25, 333, 333, 1234.5]
-    >>> del a[2:4]
-    >>> a
-    [1, 66.25, 1234.5]
-    >>> del a[:]
-    >>> a
-    []
-../..
-Tuples
-======
-
-Tuple vide
-
-    >>> t = ()
-    >>> t
-    ()
-    >>> len(t)
-    0
-
-C'est la virgule qui crée un tuple, pas la parenthèse
-
-    >>> t = 1, 2
-    >>> t
-    (1, 2)
-    >>> x = (1)
-    >>> x
-    1
-    >>> x = 1,
-    >>> x
-    (1,)
 ../..
 @index Ensembles (set)
 Ensemble (`set`)
