@@ -423,6 +423,7 @@ Listes
     >>> a
     []
 ../..
+@index Tuples
 Tuples
 ======
 Comme une liste, mais immuable
