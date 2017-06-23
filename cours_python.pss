@@ -2159,11 +2159,12 @@ classe.
 ../..
 Quelques bonnes pratiques
 =========================
+
 - nom des variables : plus d'une lettre ; pas "I" ou "l" ; pas un nom intégré
 
     >>> list = ['a', 'b', 'c']
 
-100 lignes plus loin...
+  100 lignes plus loin...
 
     >>> items = list(name)
     Traceback (most recent call last):
