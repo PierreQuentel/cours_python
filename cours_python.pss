@@ -854,13 +854,16 @@ Comme une liste, mais sans duplication ni ordre
 
     >>> panier = {'pomme', 'orange', 'pomme', 'poire', 'orange', 'banane'}
     >>> panier     # les doublons sont éliminés
-    {'banane', 'poire', 'pomme', 'orange'} # Python 3
+    {'banane', 'poire', 'pomme', 'orange'}
     >>> 'orange' in panier
     True
     >>> 'abricot' in panier
     False
 
-ou création par _set comprehensions_
+Limitation sur les types de données qu'on peut mettre dans un set : nombres,
+chaines, mais pas listes ou autres sets.
+
+Création par _set comprehensions_
 
     >>> a = {x for x in 'abracadabra' if x not in 'abc'}
     >>> a
@@ -897,7 +900,7 @@ Associe une clé (immuable : chaine, entier, tuple...) à une valeur
     4098
     >>> tel['jack'] = 4099                 # changement de valeur
     >>> del tel['sape']                    # suppression
-    >>> tel['irv'] = 4127
+    >>> tel['irv'] = 4127                  # même valeur pour plusieurs clés
     >>> tel
     {'guido': 4127, 'irv': 4127, 'jack': 4099}
     >>> 'guido' in tel                     # test d'appartenance (clé)
@@ -915,7 +918,7 @@ Dictionnaires
     KeyError: 'jenny'
     >>> tel.get('guido')
     4127
-    >>> tel.get('jenny') # renvoie None
+    >>> tel.get('jenny')       # renvoie None
     >>> tel.get('jenny', 4000) # valeur par défaut
     4000
 
@@ -1110,7 +1113,7 @@ Arborescence de fichiers :
 dans test.py :
 
     `python
-    import os            # biblithèque standard
+    import os            # bibliothèque standard
     import mon_module    # répertoire courant
 
 ../..
@@ -1290,16 +1293,20 @@ Utiliser de préférence `with` pour ne pas avoir à fermer explicitement
 ../..
 Sérialisation : le module `json`
 ==================================
-Limité aux types simples : nombres, chaines de caractères, listes, dictionnaires
-dont les clés sont des chaines de caractères.
+Sérialisation : transformation d'un objet en chaine de caractère : pour
+stockage, envoi sur le réseau (API web...).
+
+Le format JSON définit un mode de sérialialisation, limité aux types simples :
+nombres, chaines de caractères, listes, dictionnaires dont les clés sont des
+chaines de caractères.
 
     `python
     import json
-    json.dump(x, f) # écrit l'objet x dans le fichier f
     
-    obj = json.load(f) # récupère l'objet x depuis le fichier f
+    json.dumps(obj)     # sérialise l'objet
+    
+    obj = json.loads(s) # récupère l'objet sérialisé
 
-Format universel.
 ../..
 @index Erreurs et exceptions
 Erreurs et exceptions
@@ -1353,13 +1360,15 @@ Exceptions
 ==========
 `try ... except` pour gérer des exceptions
 
-    >>> while True:
-    ...     try:
-    ...         x = int(input("Veuillez entrer un nombre: "))
-    ...         break
-    ...     except ValueError:
-    ...         print("Ce n'est pas un nombre valide. Recommencez...")
-    ...
+    `python
+    while True:
+         try:
+             x = int(input("Veuillez entrer un nombre: "))
+             break
+         except ValueError:
+             print("Ce n'est pas un nombre valide. Veuillez recommencer")
+    
+    print("Vous avez saisi le nombre", x)
 
 Si une instruction du bloc `try` déclenche une exception, on arrête l'exécution du bloc
 
@@ -1386,7 +1395,7 @@ Exceptions
     `python
     try:
         f()
-    except:
+    except ValueError:
         print('erreur')
     else:
         suite()
@@ -1399,10 +1408,11 @@ Presque équivalent à
     try:
         f()
         suite()
-    except:
+    except ValueError:
         print('erreur')
 
-sauf si `suite()` déclenche une exception...
+sauf si `suite()` déclenche une `ValueError` : elle est propagée dans le 1er
+cas et capturée dans le 2ème...
 ../..
 Exceptions
 ==========
@@ -2163,7 +2173,7 @@ Quelques bonnes pratiques
 - nom des modules en minuscule ; nom des classes commence par une majuscule ;
   constantes tout en majuscules
 
-- `variable_avec_tiret_bas` plutôt que `variableAvecTiretBas`
+- `variable_avec_tiret_bas` plutôt que `variableAvecDesMajuscules`
 
 - plutôt 5 lignes lisibles qu'une ligne illisible : boucles `for` indentées
   plutôt que des _list comprehensions_ complexes
@@ -2176,7 +2186,7 @@ Des tests, des tests, des tests...
     `python
     import unittest
     from fibo import fib2
-
+    
     
     class FibonacciTestCase(unittest.TestCase):
     
@@ -2197,10 +2207,10 @@ Librairie standard : `os`
 
     >>> import os
     >>> os.getcwd()      # renvoie le répertoire courant
-    'C:\\Python26'
-    >>> os.chdir('/server/accesslogs')   # Change le répertoire courant
-    >>> os.mkdir('nouveau') # crée un nouveau répertoire
-    >>> os.rmdir('nouveau') # supprime un répertoire
+    'C:\\Python36'
+    >>> os.chdir('/server/accesslogs')   # change le répertoire courant
+    >>> os.mkdir('nouveau')              # crée un nouveau répertoire
+    >>> os.rmdir('nouveau')              # supprime un répertoire
 
     >>> os.path.join('rep1', 'rep2', 'fichier.txt')
     'rep1\\rep2\\fichier.txt'
