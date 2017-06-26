@@ -90,6 +90,28 @@ L'installation crée une commande _python_ dans l'invite de commande, qui lance 
 
 <img src="python.png" height=500>
 ../..
+Utilisation
+===========
+Interactif :
+
+    $ python
+    Python 3.6.1 (v3.6.1:69c0db5050, Mar 21 2017, 01:21:04)
+    [GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> 2 + 2
+    4
+    >>>
+
+Non-interactif :
+
+    $ python fichier.py
+    ...
+@pause
+Solliciter un module existant :
+
+    $ python -m http.server
+    Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+../..
 Ressources
 ==========
 
@@ -162,6 +184,28 @@ Chaines de caractères
          -h                        Display this usage message
          -H hostname               Hostname to connect to
     """)
+../..
+Chaines de caractères
+=====================
+
+    >>> a = "C'est \"OK\""
+    >>> b = None
+
+Évaluation
+
+    >>> a
+    'C\'est "OK"'
+    >>> b
+    >>>
+
+Affichage
+
+    >>> print(a)
+    C'est "OK"
+    >>> print(b)
+    None
+    >>>
+
 ../..
 Chaines de caractères
 =====================
@@ -291,6 +335,12 @@ Longueur d'une chaine
     >>> len(word)
     25
 
+Chaine vide
+
+    >>> vide = ''
+    >>> len(vide)
+    0
+
 ../..
 @index Listes
 Listes
@@ -375,9 +425,9 @@ Une liste peut contenir d'autres listes
     >>> a = [1, b, 4]
     >>> len(a)
     3
-    >>> a[1]
+    >>> a[1] # b
     [2, 3]
-    >>> a[1][0]
+    >>> a[1][0] # b[0]
     2
 ../..
 Listes
@@ -411,6 +461,15 @@ Listes
     >>> del a[:]
     >>> a
     []
+
+@pause
+`del` peut aussi supprimer une variable
+
+    >>> del a
+    >>> a
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    NameError: name 'a' is not defined
 ../..
 @index Tuples
 Tuples
@@ -537,7 +596,7 @@ Négation : `not`
 Conditions
 ==========
 Test sur les types intégrés : `False` pour un nombre égal à 0, une chaine vide,
-une liste vide.
+une liste vide, `None`.
 
     `python
     x = []
@@ -838,6 +897,8 @@ Listes
 ======
 Imbrication de _list comprehensions_
 
+Non :
+
     >>> matrix = [
     ...     [1, 2, 3, 4],
     ...     [5, 6, 7, 8],
@@ -846,6 +907,9 @@ Imbrication de _list comprehensions_
     ...
     >>> [[row[i] for row in matrix] for i in range(4)]
     [[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
+
+Oui :
+    >>> failing_ips = [extract_ip(line) for line in logfile if 'ERROR' in line]
 ../..
 @index Ensembles (set)
 Ensemble (`set`)
@@ -984,7 +1048,7 @@ itère sur x et affecte les valeurs
     >>> a, b, c = range(3)
     >>> c
     2
-    >>> a, b = {3: 9, 10: 20}
+    >>> a, b = {3: 9, 10: 20} # à eviter : ordre non garanti
     >>> b
     10
 
@@ -1047,6 +1111,8 @@ Modules
 Sauvegarde dans un fichier fibo.py
 
     `python
+    """Provide some Fibonacci functions."""
+    
     def fib(n):
         """Write Fibonacci series up to n."""
         a, b = 0, 1
@@ -1156,7 +1222,28 @@ Sans arguments : liste les noms définis dans le module courant
     >>> dir()
     ['__builtins__', '__doc__', '__file__', '__name__', 'a', 'fib', 'fibo']
 ../..
-@index Formattage de chaines
+La fonction `help()`
+===================
+Affiche les noms définis avec l'aide (les _doctrings_)
+
+    >>> import fibo
+    >>> help(fibo)
+    Help on module fibo:
+    
+    NAME
+        fibo - Provide some Fibonacci functions.
+    
+    FUNCTIONS
+        fib(n)
+            Write Fibonacci series up to n.
+    
+        fib2(n)
+            Return Fibonacci series up to n.
+    
+    FILE
+        /Path/to/imported/file/fibo.py
+../..
+@index Formatage de chaines
 `str.format()`
 ==============
 Permet de mettre en forme une chaine de caractères selon certains paramètres.
