@@ -53,7 +53,7 @@ Les arguments sont passés sans parenthèse
 Le corps de la fonction ne peut contenir qu'une instruction,
 son résultat est la valeur de retour
 
-Peut être utile pour gagner quelques lignes - ne pas en abuser !    
+Peut être utile pour gagner quelques lignes - ne pas en abuser !
 
 ../..
 Fonctions lambda
@@ -83,25 +83,25 @@ gérer un clic sur une série de boutons
 
     `python
     class Button:
-    
+
         def __init__(self):
             self.events = {}
-    
+
         def bind(self, event, func):
             self.events[event] = func
-        
+
         def click(self):
             self.events['click']()
-    
+
     buttons = [Button() for i in range(10)]
-    
+
     def show(n):
         """Fonction qui gère l'événement clic sur un bouton"""
         print('bouton %s' %n)
-    
+
     for i, button in enumerate(buttons):
         button.bind('click', lambda x=i:show(x))
-    
+
     buttons[2].click()
 ../..
 @index Tri de liste
@@ -112,7 +112,7 @@ Tri de liste
 
 trie la liste sur place (ne retourne pas la liste)
 
-Si _key_ n'est pas défini, utilise l'opérateur `<` 
+Si _key_ n'est pas défini, utilise l'opérateur `<`
 entre les éléments de la liste
 
     >>> t = list('azerty')
@@ -155,21 +155,21 @@ Tri de liste
 
     `python
     class Z:
-    
+
         def __init__(self, nom, prenom):
             self.nom = nom
             self.prenom = prenom
-    
+
         def ident(self):
             return '%s %s' %(self.prenom, self.nom)
-    
+
         def __repr__(self):
             return '%s %s' %(self.nom, self.prenom)
-        
+
     presents = [Z('Bouchekif','Abdessalam'),
         Z('Charlet','Delphine'),
         Z('Geille','Christian')]
-    
+
     presents.sort(key=lambda x:x.ident())
     print(presents)
 
@@ -178,7 +178,7 @@ Tri de liste
 Unicode
 =======
 
-Unicode est un standard qui associe à chaque lettre ou signe 
+Unicode est un standard qui associe à chaque lettre ou signe
 de toutes les écritures référencées un numéro de code unique
 noté U+abcd[e[f]]
 
@@ -265,7 +265,7 @@ Par défaut, l'encodage dépend de la plateforme
 Unicode
 =======
 
-Erreur si on ouvre un fichier en écriture avec un encodage 
+Erreur si on ouvre un fichier en écriture avec un encodage
 donné et qu'on veut écrire un texte non supporté par cet
 encodage
 
@@ -338,7 +338,7 @@ Renvoie une instance de la classe `MatchObject`
 
     >>> import re
     >>> mo = re.search('ai','essai')
-    >>> print(mo)    
+    >>> print(mo)
     <_sre.SRE_Match object at 0x00C7DDB0>
     >>> mo.start()
     3
@@ -365,7 +365,7 @@ Cherche une correspondance exacte entre le _modèle_ et la _chaine_
 Expressions régulières
 ======================
 
-Caractères spéciaux : 
+Caractères spéciaux :
 
 >`.`  tout caractère sauf saut de ligne
 
@@ -397,18 +397,18 @@ Expressions régulières
 
 conduit à écrire les expressions régulières comme _raw string_
 
-    expr = r'<\s*>'
-    
+    >>> expr = r'<\s*>'
+
 plus lisible que
 
-    expr = '<\\s*>'
+    >>> expr = '<\\s*>'
 ../..
 Expressions régulières
 ======================
 
 Par défaut, les caractères `*`, `+` consomment autant de contenu que possible
 
-    >>> s = '<a>essai</a>'
+    >>> s = '&lt;a>essai&lt;/a>'
     >>> mo = re.search('<.*>', s)
     >>> mo.start(), mo.end()
     0, 12
@@ -444,10 +444,13 @@ Expressions régulières
 
 Ensemble de caractères : `[...]`
 
-    [abc]    l'un quelconque des caractères a,b ou c
-    [x+*]    l'un quelconque des caractères x, + ou * (pas besoin de \)
-    [a-z]    tous les caractères entre a et z inclus
-    [^A]     tous les caractères sauf la lettre A
+`[abc]`    l'un quelconque des caractères a,b ou c
+
+`[x+*]`    l'un quelconque des caractères x, + ou * (pas besoin de \)
+
+`[a-z]`    tous les caractères entre a et z inclus
+
+`[^A]`     tous les caractères sauf la lettre A
 
 ../..
 Expressions régulières
@@ -473,19 +476,20 @@ Expressions régulières
 
 Drapeaux (_flags_) pour modifier l'expression régulière :
 
-    re.I    insensible à la casse
-    
-    re.M    ^ correspond au début de la chaine et à chaque début de ligne,
-            $ correspond à chaque fin de ligne et à la fin de la chaine
-    
-    re.S    . correspond à tous les caractères y compris le saut de ligne
+- `re.I`    insensible à la casse
+
+- `re.M`
+ -    ^ correspond au début de la chaine et à chaque début de ligne,
+ -    $ correspond à chaque fin de ligne et à la fin de la chaine
+
+- `re.S` : le point (`.`) correspond à tous les caractères y compris le saut de ligne
 
 Exemple :
 
-    >>> mo = re.search('(r)','Rennes')
+    >>> mo = re.search('(r)', 'Rennes')
     >>> print(mo)
     None
-    >>> mo = re.search('(r)','Rennes',re.I)
+    >>> mo = re.search('(r)', 'Rennes', re.I)
     >>> print(mo)
     <_sre.SRE_Match object at 0x00CDC220>
 
@@ -516,28 +520,27 @@ Expressions régulières
 
 > remplace les occurrences par _repl_ et renvoie la chaine modifiée
 
-> si _repl_ est une chaine, elle peut contenir des références 
-numérotées `\0`, `\1`, etc correspondant aux groupes dans _pattern_
+    >>> re.sub(r'\sAND\s', ' & ', 'Baked Beans And Spam', flags=re.I)
+    'Baked Beans & Spam'
+
+> si _repl_ est une chaine, elle peut contenir des références
+> numérotées `\0`, `\1`, etc correspondant aux groupes dans _pattern_
 
     >>> re.sub(r"(ab)", r" \1 ", "abcdef")
     ' ab cdef'
 
 > si _repl_ est une fonction, elle est appelée pour chaque occurrence, avec
-comme paramètre l'instance de `MatchObject`
+> comme paramètre l'instance de `MatchObject`
 
     >>> def dashrepl(matchobj):
     ...     if matchobj.group(0) == '-': return ' '
     ...     else: return '-'
     >>> re.sub('-{1,2}', dashrepl, 'pro----gram-files')
     'pro--gram files'
-    >>> re.sub(r'\sAND\s', ' & ', 'Baked Beans And Spam', flags=re.IGNORECASE)
-    'Baked Beans & Spam'
 
 ../..
 Expressions régulières
 ======================
-
-Texte à http://siprojets-dev.rd.francetelecom.fr/exo_re.txt
 
     <LI> <a HREF = "kde-linux.html" >   L'environnement graphique KDE </a>
     <LI><a href="install-mandrake-cfipen.html">Exemple d'installation</a>
@@ -592,19 +595,19 @@ Envoi de données au format JSON :
     `python
     import urllib.request
     import json
-    
+
     json_dict = { 'name': 'some name', 'value': 'some value' }
-    
+
     # conversion du dictionnaire en JSON
     json_data = json.dumps(json_dict)
-    
+
     # dumps() retourne un str : convertir en octets
     post_data = json_data.encode('utf-8')
-    
+
     # spécifier le content-type
     headers = {}
     headers['Content-Type'] = 'application/json'
-    
+
     req = urllib.request.Request(url, post_data, headers)
     res = urllib.request.urlopen(req)
 ../..
@@ -615,15 +618,15 @@ Serveur HTTP gérant les scripts CGI
     `python
     import http.server as server
     from http.server import CGIHTTPRequestHandler
-    
+
     # définit l'adresse et le port du serveur
     server_address = ('', 8001)
-    
+
     # démon http ; spécifie la classe qui gère les requêtes
     httpd = server.HTTPServer(server_address, CGIHTTPRequestHandler)
-    
+
     print("server running on port %s" % server_address[1])
-    
+
     # lance le serveur
     httpd.serve_forever()
 ../..
@@ -641,12 +644,12 @@ Lecture d'un document xml
 
     `python
     import xml.dom.minidom
-    import urllib.request    
-    
+    import urllib.request
+
     url = 'http://demo.tremorvideo.com/proddev/vast/' \
         'vast_inline_nonlinear.xml'
     f = urllib.request.urlopen(url)
-    
+
     dom = xml.dom.minidom.parse(f)
     print(dir(dom))
 L'objet retourné est conforme à l'API DOM : `childNodes, getElementById()` etc.
@@ -665,14 +668,14 @@ les événements : début/fin d'un élément par exemple
 
     `python
     import xml.sax
-    import urllib.request    
-    
+    import urllib.request
+
     url = 'http://demo.tremorvideo.com/proddev/vast/' \
         'vast_inline_nonlinear.xml'
-    
+
     class Handler(xml.sax.handler.ContentHandler):
-    
+
         def startElement(self, name, attr):
             print('element %s' %name)
-            
+
     dom = xml.sax.parse(url, Handler())
