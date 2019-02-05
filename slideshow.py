@@ -30,12 +30,12 @@ def keydown(ev, slideshow, zone):
         ev.preventDefault()  
 
 def move_to(ev, slideshow, zone):
-    pc = (ev.x - ev.target.abs_left) / ev.target.width
+    pc = (ev.x - ev.target.abs_left) / ev.target.offsetWidth
     nb_pages = len(slideshow.pages) - 1
     page = round(nb_pages * pc)
     slideshow.page_num = page
-    new_pos = '%spx' %(ev.x  -ev.target.abs_left - 
-        (document['tl_pos'].width / 2))
+    new_pos = '%spx' %(ev.x  - ev.target.abs_left - 
+        (document['tl_pos'].offsetWidth / 2))
     # show page at specified position
     show_page(slideshow, zone, page)
     # set new cursor position
@@ -154,7 +154,7 @@ def show_page(slideshow, zone, page_num):
     zone <= body + footer + timeline
 
     wh = window.innerHeight
-    tl_pos.style.left = '%spx' %(timeline.width*page_num/len(slideshow.pages))
+    tl_pos.style.left = '%spx' %(timeline.offsetWidth * page_num / len(slideshow.pages))
     document["cours"].style.minHeight = "{}px".format(int(wh * 0.9))
     
     for elt in zone.get(selector='.python'):
