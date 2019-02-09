@@ -1,4 +1,3 @@
-import slideshow
 import markdown
 
 style = """<style>
